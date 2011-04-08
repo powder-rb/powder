@@ -1,4 +1,4 @@
-powder manages [Pow](http://pow.cx/)
+Powder manages [Pow](http://pow.cx/)
 
 # Install #
 
@@ -25,3 +25,9 @@ powder manages [Pow](http://pow.cx/)
 
     $ pow remove bacon
     => unlink bacon
+
+    $ pow install
+    => installs pow server (I know, "curl get.pow.cx | sh" isn't hard, but this is _even_ easier)
+    
+    $ pow uninstall
+    => uninstalls pow server

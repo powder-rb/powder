@@ -1,5 +1,3 @@
-module Pow
-  module Gem
-    VERSION = "0.0.1"
-  end
+module Powder
+  VERSION = "0.0.2"
 end

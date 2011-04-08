@@ -4,13 +4,13 @@ require "powder/version"
 
 Gem::Specification.new do |s|
   s.name        = "powder"
-  s.version     = Pow::Gem::VERSION
+  s.version     = Powder::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Phil Nash", "Adam Rogers"]
   s.email       = ["no"]
-  s.homepage    = "http://github.com/Rodreegez/pow-gem"
+  s.homepage    = "http://github.com/Rodreegez/powder"
   s.summary     = %q{Makes Pow even easier}
-  s.description = %q{seriously, it's easy.}
+  s.description = %q{Makes Pow even easier. I mean seriously, really really ridiculously easy.}
 
   s.rubyforge_project = "powder"
 
@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.executables   = ["pow"]
   s.require_paths = ["lib"]
 
-  s.add_dependency 'thor', '>=0.14.6'
+  s.add_dependency 'thor', '>=0.9.2'
 end
