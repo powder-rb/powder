@@ -32,6 +32,11 @@ class Pow < Thor
   def list
     Dir[POWPATH + "/*"].map { |a| $stdout.puts File.basename(a) }
   end
+  
+  desc "open", "open a pow"
+  def open(name)
+    %x{open http://#{name}.dev}
+  end
 
   desc "remove", "remove a pow"
   def remove(name=nil)
@@ -48,6 +53,7 @@ class Pow < Thor
   def uninstall
     %x{curl get.pow.cx/uninstall.sh | sh}    
   end
+
 
   private 
 
