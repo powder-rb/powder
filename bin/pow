@@ -18,7 +18,7 @@ class Pow < Thor
     return unless is_powable?
     current_path = %x{pwd}.chomp
     symink_path = "#{POWPATH}/#{name || File.basename(current_path)}"
-    FileUtils.ln_s(current_path, symink_path, :verbose => true) unless File.exists?(symink_path)
+    FileUtils.ln_s(current_path, symink_path) unless File.exists?(symink_path)
   end
 
   desc "restart", "restart current pow"
