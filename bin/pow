@@ -52,10 +52,12 @@ class Pow < Thor
   private 
 
   def is_powable?
-    if File.exists? 'config.ru' 
+    if File.exists?('config.ru') || File.exists?('public/index.html')
       true
     else
-      $stdout.puts "This does not appear to be a rack app, there is no config.ru."
+      $stdout.puts "This does not appear to be a rack app as there is no config.ru."
+      $stdout.puts "If you are in a Rails 2 application, try https://gist.github.com/909308"
+      $stdout.puts "Pow can also host static apps if there is an index.html in public/"
       false
     end
   end
