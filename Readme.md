@@ -1,5 +1,9 @@
 powder manages [Pow](http://pow.cx/)
 
+# Install #
+
+    gem install powder
+
 # Usage #
 
     $ pow
