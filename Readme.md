@@ -31,3 +31,8 @@ Powder manages [Pow](http://pow.cx/)
     
     $ pow uninstall
     => uninstalls pow server
+    
+    
+## Copyright ##
+
+Copyright (c) 2011 Adam Rogers and Phil Nash. See LICENSE for details.
