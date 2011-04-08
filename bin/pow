@@ -17,7 +17,8 @@ class Pow < Thor
   def link(name=nil)
     return unless is_powable?
     current_path = %x{pwd}.chomp
-    symlink_path = "#{POWPATH}/#{name || File.basename(current_path)}"
+    name ||= File.basename(current_path).tr('_', '-')
+    symlink_path = "#{POWPATH}/#{name}"
     FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
   end
   
