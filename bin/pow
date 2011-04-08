@@ -20,6 +20,7 @@ class Pow < Thor
     name ||= File.basename(current_path).tr('_', '-')
     symlink_path = "#{POWPATH}/#{name}"
     FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+    $stdout.puts "Your application is now available at http://#{name}.dev/"
   end
   
   desc "restart", "restart current pow"
