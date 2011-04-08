@@ -14,10 +14,10 @@ powder manages [Pow](http://pow.cx/)
 
     $ pow restart 
     => restart the current app
-    # aliased as por -r
+    # aliased as pow -r
 
     $ pow remove
-    => unlink the current dir
+    => unlink current_dir
 
     $ pow remove bacon
     => unlink bacon
