@@ -1,0 +1,53 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+require 'thor'
+require 'fileutils'
+
+class Pow < Thor
+  default_task :link
+
+  map '-r' => 'restart'
+  map '-l' => 'list'
+  map '-L' => 'link'
+
+  POWPATH = "/Users/#{`whoami`.chomp}/.pow"
+
+  desc "link", "link a pow"
+  def link(name=nil)
+    return unless is_powable?
+    current_path = %x{pwd}.chomp
+    symink_path = "#{POWPATH}/#{name || File.basename(current_path)}"
+    FileUtils.ln_s(current_path, symink_path, :verbose => true) unless File.exists?(symink_path)
+  end
+
+  desc "restart", "restart current pow"
+  def restart
+    return unless is_powable?
+    FileUtils.mkdir_p('tmp')
+    %x{touch tmp/restart.txt}
+  end
+
+  desc "list", "list current pows"
+  def list
+    Dir[POWPATH + "/*"].map { |a| p File.basename(a) }
+  end
+
+  desc "remove", "remove a pow"
+  def remove(name=nil)
+    return unless is_powable?
+    FileUtils.rm POWPATH + '/' + (name || File.basename(%x{pwd}.chomp))
+  end
+
+  private 
+
+  def is_powable?
+    if File.exists? 'config.ru' 
+      true
+    else
+      $stdout.puts "This does not appear to be a rack app, there is no config.ru."
+      false
+    end
+  end
+end
+Pow.start
