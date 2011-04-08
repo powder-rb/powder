@@ -30,7 +30,7 @@ class Pow < Thor
 
   desc "list", "list current pows"
   def list
-    Dir[POWPATH + "/*"].map { |a| p File.basename(a) }
+    Dir[POWPATH + "/*"].map { |a| $stdout.puts File.basename(a) }
   end
 
   desc "remove", "remove a pow"
