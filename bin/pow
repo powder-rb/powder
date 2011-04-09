@@ -34,8 +34,8 @@ class Pow < Thor
   end
   
   desc "open", "open a pow"
-  def open(name)
-    %x{open http://#{name}.dev}
+  def open(name=nil)
+    %x{open http://#{name || File.basename(%x{pwd}.chomp)}.dev}
   end
 
   desc "remove", "remove a pow"
