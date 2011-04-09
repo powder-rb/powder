@@ -63,8 +63,6 @@ class Pow < Thor
       say "Pow can also host static apps if there is an index.html in public/"
       if yes? "Do you want to autogenerate a basic config.ru for Rails 2?"
         create_file "config.ru",  open("https://gist.github.com/909308.txt").read
-      else
-        false
       end
     end
   end
