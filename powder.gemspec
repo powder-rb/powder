@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["no"]
   s.homepage    = "http://github.com/Rodreegez/powder"
   s.summary     = %q{Makes Pow even easier}
-  s.description = %q{Makes Pow even easier. I mean seriously, really really ridiculously easy.}
+  s.description = %q{Makes Pow even easier. I mean really, really, ridiculously easy.}
 
   s.rubyforge_project = "powder"
 
