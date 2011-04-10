@@ -23,7 +23,7 @@ class Powder < Thor
     name ||= current_dir_pow_name
     symlink_path = "#{POWPATH}/#{name}"
     FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
-    say "Your application is now available at http://#{name}.dev/"
+    say "Your application is now available at http://#{name}.#{domain}/"
   end
 
   desc "restart", "Restart current pow"
@@ -40,7 +40,7 @@ class Powder < Thor
 
   desc "open", "Open a pow in the browser"
   def open(name=nil)
-    %x{open http://#{name || current_dir_pow_name}.dev}
+    %x{open http://#{name || current_dir_pow_name}.#{domain}}
   end
 
   desc "remove", "Remove a pow"
@@ -81,6 +81,10 @@ class Powder < Thor
         create_file "config.ru",  http.request(request).body
       end
     end
+  end
+
+  def domain
+    %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
   end
 end
 Powder.start
