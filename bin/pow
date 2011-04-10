@@ -4,6 +4,7 @@ require 'rubygems'
 require 'thor'
 require 'fileutils'
 require "net/https"
+require 'file/tail'
 
 class Pow < Thor
   include Thor::Actions
@@ -57,6 +58,16 @@ class Pow < Thor
   desc "uninstall", "Uninstalls pow"
   def uninstall
     %x{curl get.pow.cx/uninstall.sh | sh}
+  end
+
+  desc "log", "Tails the development log"
+  def log
+    File.open('log/development.log') do |log|
+       log.extend(File::Tail)
+       log.interval = 1
+       log.backward(10)
+       log.tail { |line| puts line }
+     end
   end
 
   private

@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'thor', '>=0.9.2'
+  s.add_dependency 'file-tail', '>=1.0.5'
 end
