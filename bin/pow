@@ -3,8 +3,11 @@
 require 'rubygems'
 require 'thor'
 require 'fileutils'
+require 'open-uri'
+
 
 class Pow < Thor
+  include Thor::Actions
   default_task :link
 
   map '-r' => 'restart'
@@ -22,7 +25,7 @@ class Pow < Thor
     FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
     $stdout.puts "Your application is now available at http://#{name}.dev/"
   end
-  
+
   desc "restart", "restart current pow"
   def restart
     return unless is_powable?
@@ -50,23 +53,24 @@ class Pow < Thor
   def install
     %x{curl get.pow.cx | sh}
   end
-  
+
   desc "uninstall", "Uninstalls pow"
   def uninstall
-    %x{curl get.pow.cx/uninstall.sh | sh}    
+    %x{curl get.pow.cx/uninstall.sh | sh}
   end
 
-
-  private 
+  private
 
   def is_powable?
     if File.exists?('config.ru') || File.exists?('public/index.html')
       true
     else
-      $stdout.puts "This does not appear to be a rack app as there is no config.ru."
-      $stdout.puts "If you are in a Rails 2 application, try https://gist.github.com/909308"
-      $stdout.puts "Pow can also host static apps if there is an index.html in public/"
-      false
+      say "This does not appear to be a rack app as there is no config.ru."
+      say "If you are in a Rails 2 application, try https://gist.github.com/909308"
+      say "Pow can also host static apps if there is an index.html in public/"
+      if yes? "Do you want to autogenerate a basic config.ru for Rails 2?"
+        create_file "config.ru",  open("https://gist.github.com/909308.txt").read
+      end
     end
   end
 end
