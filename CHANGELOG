@@ -1,3 +1,8 @@
+=== 0.1.1 / 2011-04-11
+
+* 1 minor change
+  * We won't try reading ~/.powconfig if it doesn't exist
+
 === 0.1.0 / 2011-04-11
 
 * 1 Major change
