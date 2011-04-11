@@ -16,7 +16,7 @@ powder manages [pow](http://pow.cx/)
     # by powder it will offer to download a basic config.ru for Rails 2
 
     $ powder list
-    => list all the current apps linked in ~/.powder
+    => list all the current apps linked in ~/.pow
     # aliased as powder -l
 
     $ powder restart 
