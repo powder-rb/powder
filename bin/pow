@@ -54,6 +54,11 @@ class Pow < Thor
     %x{curl get.pow.cx | sh}
   end
 
+  desc "log", "Tails the Pow log"
+  def log
+    system "tail -f ~/Library/Logs/Pow/apps/#{current_dir_pow_name}.log"
+  end
+
   desc "uninstall", "Uninstalls pow"
   def uninstall
     %x{curl get.pow.cx/uninstall.sh | sh}
