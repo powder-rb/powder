@@ -79,6 +79,7 @@ class Powder < Thor
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         request = Net::HTTP::Get.new(uri.request_uri)
         create_file "config.ru",  http.request(request).body
+        return true
       else
         say "Did not create config.ru"
         return false
@@ -87,7 +88,10 @@ class Powder < Thor
   end
 
   def domain
-    %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
+    returned_domain = %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
+    returned_domain = %x{source ~/.powconfig; echo $POW_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
+    returned_domain = 'dev' if returned_domain.nil? || returned_domain.empty?
+    returned_domain
   end
 end
 Powder.start
