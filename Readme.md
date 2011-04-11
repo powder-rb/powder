@@ -12,8 +12,8 @@ powder manages [pow](http://pow.cx/)
 
     $ powder link bacon
     => link the current dir to ~/.pow/bacon
-    # If the current directory doesn't look like an app that can be powed
-    # by powder it will offer to download a basic config.ru for Rails 2
+    # If the current directory doesn't look like an app that can be powered
+    # by pow it will offer to download a basic config.ru for Rails 2
 
     $ powder list
     => list all the current apps linked in ~/.pow
@@ -42,6 +42,12 @@ powder manages [pow](http://pow.cx/)
 
     $ powder uninstall
     => uninstalls pow server
+
+# Contributors #
+
+Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github.com/philnash).
+
+With contributions from [franciscoj](https://github.com/franciscoj), [cjkihlbom](https://github.com/cjkihlbom) and [pengwynn](https://github.com/pengwynn).
 
 
 ## Copyright ##

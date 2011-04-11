@@ -46,7 +46,7 @@ class Powder < Thor
   desc "remove", "Remove a pow"
   def remove(name=nil)
     return unless is_powable?
-    FileUtils.rm POWPATH + '/' + (name || File.basename(%x{pwd}.chomp))
+    FileUtils.rm POWPATH + '/' + (name || current_dir_pow_name)
   end
 
   desc "install", "Installs pow"
@@ -79,6 +79,9 @@ class Powder < Thor
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         request = Net::HTTP::Get.new(uri.request_uri)
         create_file "config.ru",  http.request(request).body
+      else
+        say "Did not create config.ru"
+        return false
       end
     end
   end
