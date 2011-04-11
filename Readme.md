@@ -12,7 +12,7 @@ powder manages [pow](http://pow.cx/)
 
     $ powder link bacon
     => link the current dir to ~/.pow/bacon
-    # If the current directory doesn't look like an app that can be powered
+    # If the current directory doesn't look like an app that can be powed
     # by pow it will offer to download a basic config.ru for Rails 2
 
     $ powder list
