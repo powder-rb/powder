@@ -35,6 +35,8 @@ powder manages [pow](http://pow.cx/)
 
     $ powder open bacon
     => opens http://bacon.dev in a browser
+    # if you have set up alternative top level domains in .powconfig,
+    # then the first listed domain will be opened.
 
     $ powder install
     => installs pow server 

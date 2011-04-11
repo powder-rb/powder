@@ -1,0 +1,14 @@
+=== 0.1.0 / 2011-04-11
+
+* 1 Major change
+
+  * The command has changed from pow to powder to allow pow to use the command
+  (https://github.com/Rodreegez/powder/issues/5)
+  
+* 1 minor change
+
+  * open and link now honour domains specified in .powconfig
+
+=== 0.0.4 / 2011-04-08
+
+* Early release with link, list, restart, remove, open, install and uninstall commands
