@@ -88,10 +88,14 @@ class Powder < Thor
   end
 
   def domain
-    returned_domain = %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
-    returned_domain = %x{source ~/.powconfig; echo $POW_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
-    returned_domain = 'dev' if returned_domain.nil? || returned_domain.empty?
-    returned_domain
+    if File.exists? '~/.powconfig'
+      returned_domain = %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
+      returned_domain = %x{source ~/.powconfig; echo $POW_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
+      returned_domain = 'dev' if returned_domain.nil? || returned_domain.empty?
+      returned_domain
+    else
+      'dev'
+    end
   end
 end
 Powder.start
