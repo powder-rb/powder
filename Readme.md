@@ -1,4 +1,4 @@
-Powder manages [Pow](http://pow.cx/)
+powder manages [pow](http://pow.cx/)
 
 # Install #
 
@@ -6,43 +6,44 @@ Powder manages [Pow](http://pow.cx/)
 
 # Usage #
 
-    $ pow
-    => link the current dir_name to ~/.pow/dir_name
+    $ powder
+    => link the current dir_name to ~/.pow/dir-name
     # if the dir_name has underscores in, powder changes them to hyphens
 
-    $ pow link bacon
+    $ powder link bacon
     => link the current dir to ~/.pow/bacon
-    # If the current directory doesn't look like an app that can be powered
-    # by pow it will offer to download a basic config.ru for Rails 2
+    # If the current directory doesn't look like an app that can be powed
+    # by powder it will offer to download a basic config.ru for Rails 2
 
-    $ pow list
-    => list all the current apps linked in ~/.pow
-    # aliased as pow -l
+    $ powder list
+    => list all the current apps linked in ~/.powder
+    # aliased as powder -l
 
-    $ pow restart 
+    $ powder restart 
     => restart the current app
-    # aliased as pow -r
+    # aliased as powder -r
 
-    $ pow remove
+    $ powder remove
     => unlink current_dir
 
-    $ pow remove bacon
+    $ powder remove bacon
     => unlink bacon
-    
-    $ pow open
+
+    $ powder open
     => opens the pow link in a browser
-    # aliased as pow -o
-    
-    $ pow open bacon
+    # aliased as powder -o
+
+    $ powder open bacon
     => opens http://bacon.dev in a browser
 
-    $ pow install
-    => installs pow server (I know, "curl get.pow.cx | sh" isn't hard, but this is _even_ easier)
-    
-    $ pow uninstall
+    $ powder install
+    => installs pow server 
+    # (I know, "curl get.pow.cx | sh" isn't hard, but this is _even_ easier)
+
+    $ powder uninstall
     => uninstalls pow server
-    
-    
+
+
 ## Copyright ##
 
 Copyright (c) 2011 Adam Rogers and Phil Nash. See LICENSE for details.

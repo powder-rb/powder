@@ -5,7 +5,7 @@ require 'thor'
 require 'fileutils'
 require "net/https"
 
-class Pow < Thor
+class Powder < Thor
   include Thor::Actions
   default_task :link
 
@@ -83,4 +83,4 @@ class Pow < Thor
     end
   end
 end
-Pow.start
+Powder.start
