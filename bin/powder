@@ -14,7 +14,7 @@ class Powder < Thor
   map '-L' => 'link'
   map '-o' => 'open'
 
-  POWPATH = "/Users/#{`whoami`.chomp}/.pow"
+  POWPATH = "/Users/#{`echo ~`.chomp}/.pow"
 
   desc "link", "Link a pow"
   def link(name=nil)
