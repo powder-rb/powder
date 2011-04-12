@@ -3,9 +3,10 @@
 require 'rubygems'
 require 'thor'
 require 'fileutils'
-require "net/https"
+require 'net/https'
+require 'powder/version'
 
-class Powder < Thor
+class PowderCLI < Thor
   include Thor::Actions
   default_task :link
 
@@ -13,6 +14,7 @@ class Powder < Thor
   map '-l' => 'list'
   map '-L' => 'link'
   map '-o' => 'open'
+  map '-v' => 'version'
 
   POWPATH = "#{`echo ~`.chomp}/.pow"
 
@@ -63,6 +65,11 @@ class Powder < Thor
   def uninstall
     %x{curl get.pow.cx/uninstall.sh | sh}
   end
+  
+  desc "version", "Shows the version"
+  def version
+     say "powder #{Powder::VERSION}"
+  end
 
   private
 
@@ -103,4 +110,4 @@ class Powder < Thor
     end
   end
 end
-Powder.start
+PowderCLI.start
