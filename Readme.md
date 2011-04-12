@@ -37,6 +37,11 @@ powder manages [pow](http://pow.cx/)
     => opens http://bacon.dev in a browser
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
+    
+    $ powder log
+    => Tails the pow log.
+    # Not the application log, but the pow log, available at
+    # ~/Library/Logs/Pow/apps/app-name
 
     $ powder install
     => installs pow server 
