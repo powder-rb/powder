@@ -46,7 +46,7 @@ class Powder < Thor
   desc "remove", "Remove a pow"
   def remove(name=nil)
     return unless is_powable?
-    FileUtils.rm POWPATH + '/' + (name || current_dir_pow_name)
+    FileUtils.rm_f POWPATH + '/' + (name || current_dir_pow_name)
   end
 
   desc "install", "Installs pow"
