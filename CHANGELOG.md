@@ -1,12 +1,17 @@
 ### 0.1.2 / TBA ###
 
-* 3 minor changes
+* 5 minor changes
 
-  * add log command - https://github.com/Rodreegez/powder/pull/8
+  * add log command
+    https://github.com/Rodreegez/powder/commit/140ef1fef456e3cbe266a2df61b03f3e9c403aeb
   * fix error when calling remove on a pow that does not exist 
     https://github.com/Rodreegez/powder/commit/948f7251153afaab7c881b312b094d9843919dcb
   * properly recognise rails 2 apps and display note accordingly
     https://github.com/Rodreegez/powder/commit/0445eb652ec824a7f84d12567539a7c2515341a2
+  * bump dependency on Thor
+    https://github.com/Rodreegez/powder/commit/493a8f84c27b94fcd24dc84168a47a7c399a9ba1
+  * improve how we determin home dir
+    https://github.com/Rodreegez/powder/commit/b2e70ca790420a06c21a7f4fc466c167c65fb173
 
 ### 0.1.1 / 2011-04-11 ###
 

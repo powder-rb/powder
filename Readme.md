@@ -60,6 +60,7 @@ With contributions from
   * [pengwynn](https://github.com/pengwynn).
   * [jmccartie](https://github.com/jmccartie)
   * [fschwahn](https://github.com/fschwahn)
+  * [bob-p](https://github.com/bob-p)
 
 
 ## Copyright ##
