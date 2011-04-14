@@ -58,7 +58,8 @@ powder manages [pow](http://pow.cx/)
 
 Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github.com/philnash).
 
-With contributions from 
+With contributions from:
+
   * [franciscoj](https://github.com/franciscoj) 
   * [cjkihlbom](https://github.com/cjkihlbom) 
   * [pengwynn](https://github.com/pengwynn).
