@@ -19,6 +19,18 @@ module Powder
 
     POWPATH = "#{`echo ~`.chomp}/.pow"
 
+    desc "on", "Turn pow on"
+    def on
+      %x[sudo ipfw add fwd 127.0.0.1,20559 tcp from any to me dst-port 80 in]
+      %x[sudo sysctl -w net.inet.ip.forwarding=1]
+    end
+
+    desc "off", "Turn pow off"
+    def off
+      rule = %x[sudo ipfw show | grep 'fwd 127.0.0.1,20559 tcp from any to me dst-port 80 in'].split[0]
+      %x[sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0]
+    end
+
     desc "link", "Link a pow"
     def link(name=nil)
       return unless is_powable?
