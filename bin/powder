@@ -11,6 +11,8 @@ module Powder
     include Thor::Actions
     default_task :link
 
+    map 'r' => 'restart'
+
     map '-r' => 'restart'
     map '-l' => 'list'
     map '-L' => 'link'
