@@ -29,6 +29,22 @@ module Powder
       say "Your application is now available at http://#{name}.#{domain}/"
     end
 
+    desc "on", "Start pow"
+    def on
+      %x{launchctl load "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null}
+    end
+
+    desc "off", "Stop pow"
+    def off
+      %x{launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null || true}
+    end
+
+    desc "cycle", "Stop/start pow"
+    def cycle
+      off
+      on
+    end
+
     desc "restart", "Restart current pow"
     def restart
       return unless is_powable?
