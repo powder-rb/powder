@@ -103,7 +103,9 @@ module Powder
     end
   
     def is_rails2_app?
-      File.exists?('config/environment.rb') && !`grep RAILS_GEM_VERSION config/environment.rb`.empty?
+      File.exists?('config/environment.rb') && 
+        (!`grep RAILS_GEM_VERSION config/environment.rb`.empty? ||
+         !`grep Radiant::Initializer config/environment.rb`.empty?)
     end
 
     def domain
