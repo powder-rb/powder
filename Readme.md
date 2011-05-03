@@ -19,7 +19,7 @@ powder manages [pow](http://pow.cx/)
     => List all the current apps linked in ~/.pow
     # aliased as powder -l
 
-    $ powder restart 
+    $ powder restart
     => Restart the current app
     # aliased as powder -r
 
@@ -37,18 +37,22 @@ powder manages [pow](http://pow.cx/)
     => Opens http://bacon.dev in a browser
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
-    
+
+    $ powder open bacon --subdomain=egg
+    => Opens http://egg.bacon.dev in a browser
+    # aliased as powder open -s
+
     $ powder log
     => Tails the pow log.
     # Not the application log, but the pow log, available at
     # ~/Library/Logs/Pow/apps/app-name
-    
+
     $ powder version
     => Returns the current powder version
     # aliased as powder -v
 
     $ powder install
-    => Installs pow server 
+    => Installs pow server
     # (I know, "curl get.pow.cx | sh" isn't hard, but this is _even_ easier)
 
     $ powder uninstall
@@ -60,8 +64,8 @@ Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github
 
 With contributions from:
 
-  * [franciscoj](https://github.com/franciscoj) 
-  * [cjkihlbom](https://github.com/cjkihlbom) 
+  * [franciscoj](https://github.com/franciscoj)
+  * [cjkihlbom](https://github.com/cjkihlbom)
   * [pengwynn](https://github.com/pengwynn).
   * [jmccartie](https://github.com/jmccartie)
   * [fschwahn](https://github.com/fschwahn)
