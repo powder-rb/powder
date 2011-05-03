@@ -42,8 +42,10 @@ module Powder
     end
 
     desc "open", "Open a pow in the browser"
+    method_option :subdomain, :type => :string, :aliases => "-s"
     def open(name=nil)
-      %x{open http://#{name || current_dir_pow_name}.#{domain}}
+      subdomain = options[:subdomain] ? "#{options[:subdomain]}." : ""
+      %x{open http://#{subdomain}#{name || current_dir_pow_name}.#{domain}}
     end
 
     desc "remove", "Remove a pow"
@@ -66,7 +68,7 @@ module Powder
     def uninstall
       %x{curl get.pow.cx/uninstall.sh | sh}
     end
-  
+
     desc "version", "Shows the version"
     def version
        say "powder #{Powder::VERSION}"
@@ -101,7 +103,7 @@ module Powder
         return false
       end
     end
-  
+
     def is_rails2_app?
       File.exists?('config/environment.rb') && !`grep RAILS_GEM_VERSION config/environment.rb`.empty?
     end
