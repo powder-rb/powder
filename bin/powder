@@ -16,6 +16,7 @@ module Powder
     map '-L' => 'link'
     map '-o' => 'open'
     map '-v' => 'version'
+    map 'update' => 'install'
 
     POWPATH = "#{`echo ~`.chomp}/.pow"
 
