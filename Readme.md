@@ -22,6 +22,7 @@ powder manages [pow](http://pow.cx/)
     $ powder restart 
     => Restart the current app
     # aliased as powder -r
+    # aliased as powder -r or r
 
     $ powder remove
     => Unlink current_dir
