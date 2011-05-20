@@ -18,14 +18,44 @@ module Powder
     map '-v' => 'version'
     map 'update' => 'install'
 
-    POWPATH = "#{`echo ~`.chomp}/.pow"
+    POW_PATH = "#{ENV['HOME']}/.pow"
+    POW_DAEMON_PLIST_PATH="#{ENV['HOME']}/Library/LaunchAgents/cx.pow.powd.plist"
+    POW_FIREWALL_PLIST_PATH = "/Library/LaunchDaemons/cx.pow.firewall.plist"
+
+    desc "up", "Enable pow"
+    def up
+      if File.exists? POW_FIREWALL_PLIST_PATH
+        %x{sudo launchctl load /Library/LaunchDaemons/cx.pow.firewall.plist}
+      else
+        say "Pow firewall configuration missing."
+      end
+    end
+
+    desc "down", "Disable pow"
+    def down
+      if File.exists? POW_FIREWALL_PLIST_PATH
+        if not %x{sudo launchctl list | grep cx.pow.firewall}.empty?
+          %x{sudo launchctl unload /Library/LaunchDaemons/cx.pow.firewall.plist}
+        end
+        if ports = File.open(POW_FIREWALL_PLIST_PATH).read.match(/fwd .*?,([\d]+).*?dst-port ([\d]+)/)
+          http_port, dst_port = ports[1..2]
+        end
+      end
+      
+      http_port ||= 20559
+      dst_port ||= 80
+      
+      if rule = %x{sudo ipfw show | grep ",#{http_port} .* dst-port #{dst_port} in"}.split.first
+        %x{sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0}
+      end
+    end
 
     desc "link", "Link a pow"
     def link(name=nil)
       return unless is_powable?
       current_path = %x{pwd}.chomp
       name ||= current_dir_pow_name
-      symlink_path = "#{POWPATH}/#{name}"
+      symlink_path = "#{POW_PATH}/#{name}"
       FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
       say "Your application is now available at http://#{name}.#{domain}/"
     end
@@ -39,7 +69,7 @@ module Powder
 
     desc "list", "List current pows"
     def list
-      Dir[POWPATH + "/*"].map { |a| say File.basename(a) }
+      Dir[POW_PATH + "/*"].map { |a| say File.basename(a) }
     end
 
     desc "open", "Open a pow in the browser"
@@ -50,7 +80,7 @@ module Powder
     desc "remove", "Remove a pow"
     def remove(name=nil)
       return unless is_powable?
-      FileUtils.rm_f POWPATH + '/' + (name || current_dir_pow_name)
+      FileUtils.rm_f POW_PATH + '/' + (name || current_dir_pow_name)
     end
 
     desc "install", "Installs pow"
