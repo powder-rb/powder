@@ -1,6 +1,6 @@
-### 0.1.2 / TBA
+### 0.1.3 / 2011-05-20 ###
 
-* X minor changes
+* 2 minor changes
 
   * add up and down commands
     ([commit](https://github.com/Rodreegez/powder/commit/e8775c166da40fad16d55df0022a61fd5d5af69b))
