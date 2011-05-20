@@ -4,6 +4,8 @@
 
   * add up and down commands
     ([commit](https://github.com/Rodreegez/powder/commit/e8775c166da40fad16d55df0022a61fd5d5af69b))
+  * add applog command
+    ([commit](https://github.com/Rodreegez/powder/commit/36d8e04aea2eac618611eaffe78ce8eb55eccc51))
 
 ### 0.1.2 / 2011-04-14 ###
 
