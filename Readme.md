@@ -19,15 +19,10 @@ powder manages [pow](http://pow.cx/)
     => List all the current apps linked in ~/.pow
     # aliased as powder -l
 
-    $ powder restart 
-    => Restart the current app
-    # aliased as powder -r
-
-    $ powder remove
-    => Unlink current_dir
-
-    $ powder remove bacon
-    => Unlink bacon
+    $ powder log
+    => Tails the pow log.
+    # Not the application log, but the pow log, available at
+    # ~/Library/Logs/Pow/apps/app-name
 
     $ powder open
     => Opens the pow link in a browser
@@ -37,15 +32,22 @@ powder manages [pow](http://pow.cx/)
     => Opens http://bacon.dev in a browser
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
-    
-    $ powder log
-    => Tails the pow log.
-    # Not the application log, but the pow log, available at
-    # ~/Library/Logs/Pow/apps/app-name
-    
+
+    $ powder remove
+    => Unlink current_dir
+
+    $ powder remove bacon
+    => Unlink bacon
+
+    $ powder restart 
+    => Restart the current app
+    # aliased as powder -r
+
     $ powder version
     => Returns the current powder version
     # aliased as powder -v
+
+### Install and uninstall Pow ###
 
     $ powder install
     => Installs pow server 
@@ -53,6 +55,14 @@ powder manages [pow](http://pow.cx/)
 
     $ powder uninstall
     => Uninstalls pow server
+
+### Enable and Disable Pow ###
+
+    $ powder up
+    => Enable Pow
+
+    $ powder down
+    => Disable Pow
 
 # Contributors #
 
@@ -66,7 +76,7 @@ With contributions from:
   * [jmccartie](https://github.com/jmccartie)
   * [fschwahn](https://github.com/fschwahn)
   * [bob-p](https://github.com/bob-p)
-
+  * [sj26](https://github.com/sj26)
 
 ## Copyright ##
 
