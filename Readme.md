@@ -36,7 +36,7 @@ powder manages [pow](http://pow.cx/)
     $ powder log
     => Tails the pow log.
     # Not the application log, but the pow log, available at
-    # ~/Library/Logs/Pow/apps/app-name
+    # ~/Library/Logs/Pow/apps/app-directory.log
 
     $ powder open
     => Opens the pow link in a browser

@@ -1,3 +1,11 @@
+### LATEST
+
+* 1 minor change
+
+  * Fixes log command: the pow log (~/Library/Logs/Pow/apps/app-name.log) is
+    only created as the name of the directory, regardless of the name of the
+    symlink added in .pow
+
 ### 0.1.3 / 2011-05-20 ###
 
 * 2 minor changes

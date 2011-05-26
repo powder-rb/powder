@@ -89,8 +89,13 @@ module Powder
     end
 
     desc "log", "Tails the Pow log"
-    def log(name=nil)
-      system "tail -f ~/Library/Logs/Pow/apps/#{name || current_dir_pow_name}.log"
+    def log
+      path_to_log_file = "#{ENV['HOME']}/Library/Logs/Pow/apps/#{current_dir_name}.log"
+      if File.exist? path_to_log_file
+        system "tail -f #{path_to_log_file}"
+      else
+        say "There is no Pow log file, have you set this application up yet?"
+      end
     end
 
     desc "applog", "Tails in current app"
@@ -109,9 +114,13 @@ module Powder
     end
 
     private
+    
+    def current_dir_name
+      File.basename(%x{pwd}.chomp)
+    end
 
     def current_dir_pow_name
-      File.basename(%x{pwd}.chomp).tr('_', '-')
+      current_dir_name.tr('_', '-')
     end
 
     def is_powable?
