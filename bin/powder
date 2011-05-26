@@ -126,9 +126,9 @@ module Powder
     def is_powable?
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
-      elsif is_rails2_app?
-        say "This appears to be a Rails 2 applicaton. You need a config.ru file."
-        if yes? "Do you want to autogenerate a basic config.ru for Rails 2?"
+      elsif legacy = (is_rails2_app? || is_radiant_app?)
+        say "This appears to be a #{legacy} applicaton. You need a config.ru file."
+        if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
           uri = URI.parse("https://gist.github.com/909308.txt")
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = true
@@ -149,8 +149,12 @@ module Powder
 
     def is_rails2_app?
       File.exists?('config/environment.rb') && 
-        (!`grep RAILS_GEM_VERSION config/environment.rb`.empty? ||
-         !`grep Radiant::Initializer config/environment.rb`.empty?)
+        !`grep RAILS_GEM_VERSION config/environment.rb`.empty? ? 'Rails 2' : nil
+    end
+    
+    def is_radiant_app?
+      File.exists?('config/environment.rb') && 
+        !`grep Radiant::Initializer config/environment.rb`.empty? ? 'Radiant' : nil
     end
 
     def domain
