@@ -36,7 +36,7 @@ powder manages [pow](http://pow.cx/)
     $ powder log
     => Tails the pow log.
     # Not the application log, but the pow log, available at
-    # ~/Library/Logs/Pow/apps/app-directory.log
+    # ~/Library/Logs/Pow/apps/#{app-directory}.log
 
     $ powder open
     => Opens the pow link in a browser
@@ -63,6 +63,11 @@ powder manages [pow](http://pow.cx/)
 
     $ powder uninstall
     => Uninstalls pow server
+    
+    $ powder update
+    => Updates pow server
+    # Really this is just an alias to powder install, but it feels more natural
+    # this way.
 
 ### Enable and Disable Pow ###
 
