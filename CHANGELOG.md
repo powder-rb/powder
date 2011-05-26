@@ -1,10 +1,13 @@
-### LATEST
+### 0.1.4 / 2011-05-26
 
-* 1 minor change
+* 2 minor change
 
   * Fixes log command: the pow log (~/Library/Logs/Pow/apps/app-name.log) is
     only created as the name of the directory, regardless of the name of the
-    symlink added in .pow
+    symlink added in .pow (issue 23)
+    ([commit](https://github.com/Rodreegez/powder/commit/12fe024cc6768439d1555d61d770f660bfaf2d15))
+  * Supports Radiant apps (issue 21)
+    ([commit](https://github.com/Rodreegez/powder/commit/5854f32ca0b1106fefad8eb6b7a0e7d2c91e67d3))
 
 ### 0.1.3 / 2011-05-20 ###
 
