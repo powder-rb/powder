@@ -87,3 +87,5 @@ Massive thanks to all our great
 ## Copyright ##
 
 Copyright (c) 2011 Adam Rogers and Phil Nash. See LICENSE for details.
+
+Lovingly supported by [Mint Digital](http://mintdigital.com)
