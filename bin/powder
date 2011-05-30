@@ -57,7 +57,9 @@ module Powder
       name ||= current_dir_pow_name
       symlink_path = "#{POW_PATH}/#{name}"
       FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
-      say "Your application is now available at http://#{name}.#{domain}/"
+      site_url = "http://#{name}.#{domain}/"
+      %x{open #{site_url}}
+      say "Your application is now available at #{site_url}"
     end
 
     desc "restart", "Restart current pow"
