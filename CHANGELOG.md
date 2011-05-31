@@ -1,3 +1,13 @@
+### 0.1.5 / 2011-05-31
+
+* 2 new commands
+
+  * Added 'status' command that pretty prints the pow server 
+    status to the console
+  * Added 'config' command that pretty prints the pow server 
+    configuration to the console
+    (ab794dc2f6955342f32dbb9d7916d1c47e4f1924 Mert Torun, mert@merttorun.com)
+
 ### 0.1.4 / 2011-05-26
 
 * 2 minor change
