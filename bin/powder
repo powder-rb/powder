@@ -112,6 +112,25 @@ module Powder
     def version
        say "powder #{Powder::VERSION}"
     end
+    
+        desc "config", "Shows current pow configuration"
+    def config
+      json = eval %x{curl --silent -H host:pow localhost/config.json}.gsub(':','=>')
+      json.each do |k,v|
+        case v
+        when String, Numeric
+          say "#{k.ljust(12,' ')} #{v}"
+        when Array
+          say "#{k.ljust(12,' ')} #{v.join ', '}\n"
+        end
+      end
+    end
+    
+    desc "status", "Shows current pow status"
+    def status
+      json = eval %x{curl --silent -H host:pow localhost/status.json}.gsub(':','=>')
+      json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
+    end
 
     private
     
