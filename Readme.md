@@ -77,6 +77,14 @@ powder manages [pow](http://pow.cx/)
     $ powder down
     => Disable Pow
 
+### Get information about Pow ###
+
+    $ powder status
+    => Get status information
+
+    $ powder config
+    => Get current configuration information
+
 # Contributors #
 
 Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github.com/philnash).

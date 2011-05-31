@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "powder"
   s.version     = Powder::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Phil Nash", "Adam Rogers"]
+  s.authors     = ["Phil Nash", "Adam Rogers", "Mert Torun"]
   s.email       = ["no"]
   s.homepage    = "http://github.com/Rodreegez/powder"
   s.summary     = %q{Makes Pow even easier}
