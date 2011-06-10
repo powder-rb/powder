@@ -29,6 +29,9 @@ powder manages [pow](http://pow.cx/)
     $ powder applog
     => tail the log of the current app
 
+    $ powder config
+    => Get Pow's current configuration information
+
     $ powder list
     => List all the current apps linked in ~/.pow
     # aliased as powder -l
@@ -47,9 +50,12 @@ powder manages [pow](http://pow.cx/)
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
 
-    $ powder restart 
+    $ powder restart
     => Restart the current app
     # aliased as powder -r
+
+    $ powder status
+    => Get Pow's current status information
 
     $ powder version
     => Returns the current powder version
@@ -58,12 +64,12 @@ powder manages [pow](http://pow.cx/)
 ### Install and uninstall Pow ###
 
     $ powder install
-    => Installs pow server 
+    => Installs pow server
     # (I know, "curl get.pow.cx | sh" isn't hard, but this is _even_ easier)
 
     $ powder uninstall
     => Uninstalls pow server
-    
+
     $ powder update
     => Updates pow server
     # Really this is just an alias to powder install, but it feels more natural
@@ -76,14 +82,6 @@ powder manages [pow](http://pow.cx/)
 
     $ powder down
     => Disable Pow
-
-### Get information about Pow ###
-
-    $ powder status
-    => Get status information
-
-    $ powder config
-    => Get current configuration information
 
 # Contributors #
 
