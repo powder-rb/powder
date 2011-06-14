@@ -54,6 +54,9 @@ powder manages [pow](http://pow.cx/)
     $ powder uninstall
     => Uninstalls pow server
 
+    $ powder debug
+    => Opens a debug shell with your application environment
+
 # Contributors #
 
 Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github.com/philnash).
