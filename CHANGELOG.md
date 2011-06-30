@@ -1,4 +1,4 @@
-### 0.1.5 / TBA
+### 0.1.5 / 2011-06-30 ###
 
 * 4 minor changes
 
@@ -9,7 +9,7 @@
     * Add config and status commands
       ([commit](https://github.com/Rodreegez/powder/commit/9f7ec926a9b502d2fe546c9f1b1d396477a3cae4))
 
-### 0.1.4 / 2011-05-26
+### 0.1.4 / 2011-05-26 ###
 
 * 2 minor change
 
