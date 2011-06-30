@@ -1,7 +1,11 @@
 ### 0.1.5 / TBA
 
-* 2 minor changes
+* 4 minor changes
 
+    * Expand path to ~/.powconfig before reading it
+      ([commit](https://github.com/Rodreegez/powder/commit/58ec48e4f369ea72e76c15900e7ec8f0c6b0bbf1))
+    * Fix generating config.ru
+      ([commit](https://github.com/Rodreegez/powder/commit/f65d3f1f897a36d18ea3ea54fa39627c8d5fcee6))
     * Add config and status commands
       ([commit](https://github.com/Rodreegez/powder/commit/9f7ec926a9b502d2fe546c9f1b1d396477a3cae4))
 
