@@ -116,7 +116,7 @@ module Powder
     desc "config", "Shows current pow configuration"
     def config
       results = %x{curl --silent -H host:pow localhost/config.json}.gsub(':','=>')
-      return say("Error: Cannot get Pow config. Pow may be down. Try 'powder up' first.") if results.empty?
+      return say("Error: Cannot get Pow config. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each do |k,v|
         case v
@@ -131,7 +131,7 @@ module Powder
     desc "status", "Shows current pow status"
     def status
       results = %x{curl --silent -H host:pow localhost/status.json}.gsub(':','=>')
-      return say("Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty?
+      return say("Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
     end
