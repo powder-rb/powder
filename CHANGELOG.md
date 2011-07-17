@@ -1,3 +1,9 @@
+### ??? ###
+
+* 1 minor change
+    * Don't break config/status when pow is down
+      ([commit](https://github.com/Rodreegez/powder/commit/c3aa98943c51079e2e8a1dc0a983efe76e2964c7)))
+
 ### 0.1.5 / 2011-06-30 ###
 
 * 4 minor changes
