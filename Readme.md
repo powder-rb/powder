@@ -24,6 +24,9 @@ powder manages [pow](http://pow.cx/)
     $ powder remove bacon
     => Unlink bacon
 
+    $ powder cleanup
+    => remove all invalid symbolic link
+
 ### Working with Pow ###
 
     $ powder applog

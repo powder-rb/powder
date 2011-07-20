@@ -83,6 +83,13 @@ module Powder
       FileUtils.rm_f POW_PATH + '/' + (name || current_dir_pow_name)
     end
 
+    desc "cleanup", "Clean up invalid symbolic link"
+    def cleanup
+      Dir[POW_PATH + "/*"].map { |a| 
+        FileUtils.rm a unless File.exists? File.readlink a
+      }
+    end
+
     desc "install", "Installs pow"
     def install
       %x{curl get.pow.cx | sh}
