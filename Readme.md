@@ -9,19 +9,24 @@ powder manages [pow](http://pow.cx/)
 
 ### Linking apps in Pow ###
 
-    $ powder
-    => Link the current dir_name to ~/.pow/dir-name
-    # if the dir_name has underscores in, powder changes them to hyphens
+    $ powder [-h|help]
+    => Display usage information
+    # Lists name and brief descriptions of the tasks available
 
-    $ powder link bacon
+    $ powder link 
+    => Link the current dir to ~/.pow/<current_directory>
+
+    $ powder link [bacon]
     => Link the current dir to ~/.pow/bacon
-    # If the current directory doesn't look like an app that can be powed
-    # by pow it will offer to download a basic config.ru for Rails 2
+
+    # For both forms of link, if the current directory doesn't 
+    # look like an app that can be powed it will offer to download
+    # a basic config.ru for Rails 2
 
     $ powder remove
     => Unlink current_dir
 
-    $ powder remove bacon
+    $ powder remove [bacon]
     => Unlink bacon
 
 ### Working with Pow ###
@@ -45,7 +50,7 @@ powder manages [pow](http://pow.cx/)
     => Opens the pow link in a browser
     # aliased as powder -o
 
-    $ powder open bacon
+    $ powder open [bacon]
     => Opens http://bacon.dev in a browser
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
