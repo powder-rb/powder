@@ -18,10 +18,10 @@ powder manages [pow](http://pow.cx/)
     # If the current directory doesn't look like an app that can be powed
     # by pow it will offer to download a basic config.ru for Rails 2
 
-    $ powder remove
+    $ powder unlink 
     => Unlink current_dir
 
-    $ powder remove bacon
+    $ powder unlink bacon
     => Unlink bacon
 
 ### Working with Pow ###

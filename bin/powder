@@ -77,11 +77,15 @@ module Powder
       %x{open http://#{name || current_dir_pow_name}.#{domain}}
     end
 
-    desc "remove", "Remove a pow"
-    def remove(name=nil)
+    desc "unlink", "Unlink a pow app"
+    def unlink(name=nil)
       return unless is_powable?
       FileUtils.rm_f POW_PATH + '/' + (name || current_dir_pow_name)
+      say "Successfully removed #{(name || current_dir_pow_name)}"
     end
+
+    desc "remove", "An alias to Unlink (depreciated)"
+    alias :remove :unlink
 
     desc "install", "Installs pow"
     def install
