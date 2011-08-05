@@ -74,6 +74,12 @@ module Powder
 
     desc "open", "Open a pow in the browser"
     def open(name=nil)
+      Dir.foreach(POW_PATH).reject{|i| i.match(/^\./)}.each do |file_name|
+        unless File.readlink("#{POW_PATH}/#{file_name}").match(current_dir_pow_name+'/?$').nil?
+          name = file_name
+          break
+        end
+      end
       %x{open http://#{name || current_dir_pow_name}.#{domain}}
     end
 
