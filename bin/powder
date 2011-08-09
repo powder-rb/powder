@@ -70,14 +70,19 @@ module Powder
     desc "debug", "Open a debug session"
     def debug
       doc = <<-RDEBUG
-      require 'ruby-debug'
-      Debugger.start_remote
-      Debugger.settings[:autoeval] = true
+      if (Rails.env.development? || Rails.env.test?) && !$rails_rake_task
+        require 'ruby-debug'
+        Debugger.settings[:autoeval] = true
+        Debugger.settings[:autolist] = 1
+        Debugger.settings[:reload_source_on_change] = true
+        Debugger.start_remote
+      end
       RDEBUG
       initializer =  %x{pwd}.chomp + "/config/initializers/rdebug.rb"
       unless File.exists? initializer
         say "Its appears that he required initializer for rdebug not exists in your application."
         if yes? "Do you want to create it(y/n)?"
+          say "Created config/initializers/rdebug.rb"
           create_file initializer, doc
           restart
         end
