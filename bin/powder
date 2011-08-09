@@ -69,22 +69,20 @@ module Powder
 
     desc "debug", "Open a debug session"
     def debug
-      doc = <<-RDEBUG
-      if (Rails.env.development? || Rails.env.test?) && !$rails_rake_task
-        require 'ruby-debug'
-        Debugger.settings[:autoeval] = true
-        Debugger.settings[:autolist] = 1
-        Debugger.settings[:reload_source_on_change] = true
-        Debugger.start_remote
-      end
-      RDEBUG
       initializer =  %x{pwd}.chomp + "/config/initializers/rdebug.rb"
       unless File.exists? initializer
         say "Its appears that he required initializer for rdebug not exists in your application."
         if yes? "Do you want to create it(y/n)?"
-          say "Created config/initializers/rdebug.rb"
-          create_file initializer, doc
+          uri = URI.parse("https://raw.github.com/gist/1135055")
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          request = Net::HTTP::Get.new(uri.request_uri)
+          create_file initializer, http.request(request).body
           restart
+        else
+          say
+          return false
         end
       end
 
