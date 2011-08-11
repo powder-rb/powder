@@ -9,7 +9,7 @@ require 'powder/version'
 module Powder
   class CLI < Thor
     include Thor::Actions
-    default_task :link
+    default_task :help
 
     map '-r' => 'restart'
     map '-l' => 'list'
