@@ -113,6 +113,35 @@ module Powder
        say "powder #{Powder::VERSION}"
     end
     
+    desc "host", "Updates hosts file to map pow domains to 127.0.0.1"
+    def host
+      hosts_file_path = "/etc/hosts"
+      pow_domain_records = Dir[POW_PATH + "/*"].map { |a| "127.0.0.1\t#{File.basename(a)}.#{domain}\t#powder" }
+      hosts_file = File.read("/etc/hosts").split("\n").delete_if {|row| row =~ /.+(#powder)/}
+      first_loopback_index = hosts_file.index {|i| i =~ /^(127.0.0.1).+/}
+      hosts_file = hosts_file.insert(first_loopback_index + 1, pow_domain_records)
+      File.open("#{ENV['HOME']}/hosts-powder", "w")  do
+        |file| file.puts hosts_file.join("\n")
+      end
+      %x{cp #{hosts_file_path} #{ENV['HOME']}/hosts-powder.bak}
+      %x{sudo mv #{ENV['HOME']}/hosts-powder #{hosts_file_path}}
+      %x{dscacheutil -flushcache}
+      say "Domains added to hosts file, old host file is saved at #{ENV['HOME']}/hosts-powder.bak"
+    end
+    
+    desc "unhost", "Removes pow domains from hostfile"
+    def unhost
+      hosts_file_path = "/etc/hosts"
+      hosts_file = File.read("/etc/hosts").split("\n").delete_if {|row| row =~ /.+(#powder)/}
+      File.open("#{ENV['HOME']}/hosts-powder", "w")  do
+        |file| file.puts hosts_file.join("\n")
+      end
+      %x{cp #{hosts_file_path} #{ENV['HOME']}/hosts-powder.bak}
+      %x{sudo mv #{ENV['HOME']}/hosts-powder #{hosts_file_path}}
+      %x{dscacheutil -flushcache}
+      say "Domains removed from hosts file, old host file is saved at #{ENV['HOME']}/hosts-powder.bak"
+    end
+    
     desc "config", "Shows current pow configuration"
     def config
       results = %x{curl --silent -H host:pow localhost/config.json}.gsub(':','=>')
