@@ -14,6 +14,7 @@ module Powder
     map '-r' => 'restart'
     map '-l' => 'list'
     map '-L' => 'link'
+    map '-d' => 'default'
     map '-o' => 'open'
     map '-v' => 'version'
     map 'update' => 'install'
@@ -58,6 +59,17 @@ module Powder
       symlink_path = "#{POW_PATH}/#{name}"
       FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
       say "Your application is now available at http://#{name}.#{domain}/"
+    end
+    
+    desc "default", "Set this app as default"
+    def default(name=nil)
+      return unless is_powable?
+      current_path = %x{pwd}.chomp
+      name ||= current_dir_pow_name
+      symlink_path = "#{POW_PATH}/default"
+      FileUtils.rm_f symlink_path if File.exists?(symlink_path)
+      FileUtils.ln_sf(current_path, symlink_path)
+      say "Your application(#{name}) is now default at http://localhost/"
     end
 
     desc "restart", "Restart current pow"
