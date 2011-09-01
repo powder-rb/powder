@@ -112,8 +112,8 @@ module Powder
 
     desc "cleanup", "Clean up invalid symbolic link"
     def cleanup
-      Dir[POW_PATH + "/*"].map { |a|
-        FileUtils.rm a unless File.exists? File.readlink a
+      Dir[POW_PATH + "/*"].map { |symlink|
+        FileUtils.rm a unless File.exists? File.readlink(symlink)
       }
     end
 

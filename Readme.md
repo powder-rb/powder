@@ -30,7 +30,7 @@ powder manages [pow](http://pow.cx/)
     => Unlink bacon
 
     $ powder cleanup
-    => remove all invalid symbolic link
+    => remove all invalid symbolic links
 
 ### Working with Pow ###
 
