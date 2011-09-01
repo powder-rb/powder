@@ -110,6 +110,13 @@ module Powder
     desc "remove", "An alias to Unlink (depreciated)"
     alias :remove :unlink
 
+    desc "cleanup", "Clean up invalid symbolic link"
+    def cleanup
+      Dir[POW_PATH + "/*"].map { |a|
+        FileUtils.rm a unless File.exists? File.readlink a
+      }
+    end
+
     desc "install", "Installs pow"
     def install
       %x{curl get.pow.cx | sh}
