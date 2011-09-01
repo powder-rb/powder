@@ -41,10 +41,10 @@ module Powder
           http_port, dst_port = ports[1..2]
         end
       end
-      
+
       http_port ||= 20559
       dst_port ||= 80
-      
+
       if rule = %x{sudo ipfw show | grep ",#{http_port} .* dst-port #{dst_port} in"}.split.first
         %x{sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0}
       end
@@ -69,7 +69,11 @@ module Powder
 
     desc "list", "List current pows"
     def list
-      Dir[POW_PATH + "/*"].map { |a| say File.basename(a) }
+      pows = Dir[POW_PATH + "/*"].map do |link|
+        realpath = File.readlink(link).gsub(ENV['HOME'], '~')
+        [File.basename(link), realpath]
+      end
+      print_table(pows)
     end
 
     desc "open", "Open a pow in the browser"
@@ -112,7 +116,7 @@ module Powder
     def version
        say "powder #{Powder::VERSION}"
     end
-    
+
     desc "config", "Shows current pow configuration"
     def config
       results = %x{curl --silent -H host:pow localhost/config.json}.gsub(':','=>')
@@ -137,7 +141,7 @@ module Powder
     end
 
     private
-    
+
     def current_dir_name
       File.basename(%x{pwd}.chomp)
     end
@@ -171,12 +175,12 @@ module Powder
     end
 
     def is_rails2_app?
-      File.exists?('config/environment.rb') && 
+      File.exists?('config/environment.rb') &&
         !`grep RAILS_GEM_VERSION config/environment.rb`.empty? ? 'Rails 2' : nil
     end
-    
+
     def is_radiant_app?
-      File.exists?('config/environment.rb') && 
+      File.exists?('config/environment.rb') &&
         !`grep Radiant::Initializer config/environment.rb`.empty? ? 'Radiant' : nil
     end
 
