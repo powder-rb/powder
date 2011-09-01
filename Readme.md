@@ -13,20 +13,20 @@ powder manages [pow](http://pow.cx/)
     => Display usage information
     # Lists name and brief descriptions of the tasks available
 
-    $ powder link 
+    $ powder link
     => Link the current dir to ~/.pow/<current_directory>
 
     $ powder link [bacon]
     => Link the current dir to ~/.pow/bacon
 
-    # For both forms of link, if the current directory doesn't 
+    # For both forms of link, if the current directory doesn't
     # look like an app that can be powed it will offer to download
     # a basic config.ru for Rails 2
 
-    $ powder remove
+    $ powder unlink
     => Unlink current_dir
 
-    $ powder remove [bacon]
+    $ powder unlink bacon
     => Unlink bacon
 
 ### Working with Pow ###
