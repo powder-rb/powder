@@ -26,9 +26,14 @@ module Powder
     desc "up", "Enable pow"
     def up
       if File.exists? POW_FIREWALL_PLIST_PATH
-        %x{sudo launchctl load /Library/LaunchDaemons/cx.pow.firewall.plist}
+        %x{sudo launchctl load #{POW_FIREWALL_PLIST_PATH}}
       else
         say "Pow firewall configuration missing."
+      end
+      if File.exists? POW_DAEMON_PLIST_PATH
+        %x{launchctl load #{POW_DAEMON_PLIST_PATH}}
+      else
+        say "Pow daemon configuration missing."
       end
     end
 
@@ -36,11 +41,15 @@ module Powder
     def down
       if File.exists? POW_FIREWALL_PLIST_PATH
         if not %x{sudo launchctl list | grep cx.pow.firewall}.empty?
-          %x{sudo launchctl unload /Library/LaunchDaemons/cx.pow.firewall.plist}
+          %x{sudo launchctl unload #{POW_FIREWALL_PLIST_PATH}}
         end
         if ports = File.open(POW_FIREWALL_PLIST_PATH).read.match(/fwd .*?,([\d]+).*?dst-port ([\d]+)/)
           http_port, dst_port = ports[1..2]
         end
+      end
+
+      if File.exists? POW_DAEMON_PLIST_PATH
+        %x{launchctl unload #{POW_DAEMON_PLIST_PATH}}
       end
 
       http_port ||= 20559
