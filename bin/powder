@@ -54,11 +54,15 @@ module Powder
     desc "link", "Link a pow"
     def link(name=nil)
       return unless is_powable?
-      current_path = %x{pwd}.chomp
-      name ||= current_dir_pow_name
-      symlink_path = "#{POW_PATH}/#{name}"
-      FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
-      say "Your application is now available at http://#{name}.#{domain}/"
+      if File.symlink?(POW_PATH)
+        current_path = %x{pwd}.chomp
+        name ||= current_dir_pow_name
+        symlink_path = "#{POW_PATH}/#{name}"
+        FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+        say "Your application is now available at http://#{name}.#{domain}/"
+      else
+        say "Pow is not installed."
+      end
     end
 
     desc "default", "Set this app as default"
