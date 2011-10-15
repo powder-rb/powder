@@ -19,6 +19,7 @@ module Powder
     map '-v' => 'version'
     map 'update' => 'install'
 
+    POWDER_CONFIG = ".powder"
     POW_PATH = "#{ENV['HOME']}/.pow"
     POW_DAEMON_PLIST_PATH="#{ENV['HOME']}/Library/LaunchAgents/cx.pow.powd.plist"
     POW_FIREWALL_PLIST_PATH = "/Library/LaunchDaemons/cx.pow.firewall.plist"
@@ -52,12 +53,19 @@ module Powder
     end
 
     desc "link", "Link a pow"
+    method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
+    method_option :"no-config", :type => :boolean, :default => false, :alias => '-n', :desc => "do not write a .powder file"
     def link(name=nil)
       return unless is_powable?
       if File.symlink?(POW_PATH)
         current_path = %x{pwd}.chomp
-        name ||= current_dir_pow_name
+        if name
+          write_pow_config(name)
+        else
+          name = get_pow_name
+        end
         symlink_path = "#{POW_PATH}/#{name}"
+        FileUtils.rm_f(symlink_path) if options[:force]
         FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
         say "Your application is now available at http://#{name}.#{domain}/"
       else
@@ -69,7 +77,7 @@ module Powder
     def default(name=nil)
       return unless is_powable?
       current_path = %x{pwd}.chomp
-      name ||= current_dir_pow_name
+      name ||= get_pow_name
       symlink_path = "#{POW_PATH}/default"
       FileUtils.rm_f symlink_path if File.exists?(symlink_path)
       FileUtils.ln_sf(current_path, symlink_path)
@@ -78,7 +86,7 @@ module Powder
 
     desc "un_default", "remove current default app"
     def un_default(name=nil)
-      name ||= current_dir_pow_name
+      name ||= get_pow_name
       symlink_path = "#{POW_PATH}/default"
       FileUtils.rm_f symlink_path if File.exists?(symlink_path)
     end
@@ -102,14 +110,19 @@ module Powder
 
     desc "open", "Open a pow in the browser"
     def open(name=nil)
-      %x{open http://#{name || current_dir_pow_name}.#{domain}}
+      %x{open http://#{name || get_pow_name}.#{domain}}
     end
 
     desc "unlink", "Unlink a pow app"
+    method_option :delete, :type => :boolean, :default => false, :alias => '-e', :desc => "delete .powder"
     def unlink(name=nil)
       return unless is_powable?
-      FileUtils.rm_f POW_PATH + '/' + (name || current_dir_pow_name)
-      say "Successfully removed #{(name || current_dir_pow_name)}"
+      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
+      say "Successfully removed #{(name || get_pow_name)}"
+      if options[:delete]
+        FileUtils.rm_f POWDER_CONFIG
+        say "Successfully removed #{POWDER_CONFIG}"
+      end
     end
 
     desc "remove", "An alias to Unlink (depreciated)"
@@ -181,8 +194,41 @@ module Powder
       File.basename(%x{pwd}.chomp)
     end
 
+    def configured_pow_name
+      return nil unless File.exists?(POWDER_CONFIG)
+
+      File.foreach(POWDER_CONFIG) do |line|
+        next if line =~ /^($|#)/
+        return line.chomp
+      end
+
+      return nil
+    end
+
     def current_dir_pow_name
       current_dir_name.tr('_', '-')
+    end
+
+    def get_pow_name
+      configured_pow_name || current_dir_pow_name
+    end
+
+    def write_pow_config(name=nil)
+      return if ! name || options[:"no-config"]
+      powder_exists = File.exists?(POWDER_CONFIG)
+      configured_name = get_pow_name
+
+      unlink if powder_exists && configured_name != name
+
+      if options[:force] || ! powder_exists
+        File.open(POWDER_CONFIG, "w") do |f|
+          f.puts(name)
+        end
+        say "Created powder config #{POWDER_CONFIG}"
+      elsif !options[:force] && powder_exists && configured_name != name
+        say "Cowardly refusing to overwrite #{POWDER_CONFIG}"
+        exit 1
+      end
     end
 
     def is_powable?

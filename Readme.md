@@ -9,6 +9,8 @@ powder manages [pow](http://pow.cx/)
 
 ### Linking apps in Pow ###
 
+    powder will attempt to read .powder, which names a default symlink for the current project
+
     $ powder [-h|help]
     => Display usage information
     # Lists name and brief descriptions of the tasks available
@@ -18,13 +20,22 @@ powder manages [pow](http://pow.cx/)
 
     $ powder link [bacon]
     => Link the current dir to ~/.pow/bacon
+    => Create .powder, contents bacon
+
+    $ powder link [bacon] --no-create
+    => Link the current dir to ~/.pow/bacon
+
+    $ powder link [bacon] --force
+    => Remove the current pow symlink, and .powder
+    => Link the current dir to ~/.pow/bacon
+    => Create .powder, contents bacon
 
     # For both forms of link, if the current directory doesn't
     # look like an app that can be powed it will offer to download
     # a basic config.ru for Rails 2
 
     $ powder unlink
-    => Unlink current_dir
+    => Unlink current_dir or the symlink defined in .powder
 
     $ powder unlink bacon
     => Unlink bacon
