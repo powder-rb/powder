@@ -99,6 +99,12 @@ module Powder
       %x{touch tmp/restart.txt}
     end
 
+    desc "reset", "Reset this app's restart settings"
+    def reset
+      return unless is_powable?
+      FileUtils.rm_f Dir.glob('tmp/*restart.txt')
+    end
+
     desc "list", "List current pows"
     def list
       pows = Dir[POW_PATH + "/*"].map do |link|

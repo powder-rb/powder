@@ -62,6 +62,9 @@ powder manages [pow](http://pow.cx/)
     => Restart the current app
     # aliased as powder -r
 
+    $ powder reset
+    => Reset the current app's restart settings
+
     $ powder status
     => Get Pow's current status information
 
