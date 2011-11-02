@@ -2,6 +2,12 @@
 
 * 1 minor change
 
+    * adds not_restarts command
+      ([commit](https://github.com/Rodreegez/powder/commit/9371ccdf822a83db7f1fded365d01bd2c613aed3))
+    * adds always_restart command
+      ([commit](https://github.com/Rodreegez/powder/commit/45bd64180930353ef6c45626ccae150091374828))
+    * pow down properly unloads pow processes
+      ([commit](https://github.com/Rodreegez/powder/commit/a6373e73c746587eb1ae23aaa1a26fe331274e6d))
     * adds host/unhost for dealing with no network
       ([commit](https://github.com/Rodreegez/powder/commit/547c3d1e2fbc155fea3c162a373fed017a739107))
     * Don't break config/status when pow is down
