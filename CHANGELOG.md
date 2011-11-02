@@ -1,7 +1,9 @@
-### ??? ###
+### 0.1.7 ###
 
 * 1 minor change
 
+    * adds proper support for alt names
+      ([commit](https://github.com/Rodreegez/powder/commit/4b850b1dbb446f7d0c3a643d4cc7be99eebd417b))
     * adds not_restarts command
       ([commit](https://github.com/Rodreegez/powder/commit/9371ccdf822a83db7f1fded365d01bd2c613aed3))
     * adds always_restart command
