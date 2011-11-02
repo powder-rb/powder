@@ -1,8 +1,11 @@
 ### ??? ###
 
 * 1 minor change
+
+    * adds host/unhost for dealing with no network
+      ([commit](https://github.com/Rodreegez/powder/commit/547c3d1e2fbc155fea3c162a373fed017a739107))
     * Don't break config/status when pow is down
-      ([commit](https://github.com/Rodreegez/powder/commit/c3aa98943c51079e2e8a1dc0a983efe76e2964c7)))
+      ([commit](https://github.com/Rodreegez/powder/commit/c3aa98943c51079e2e8a1dc0a983efe76e2964c7))
 
 ### 0.1.5 / 2011-06-30 ###
 
