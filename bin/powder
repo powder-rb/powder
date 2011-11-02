@@ -107,8 +107,8 @@ module Powder
       %x{touch tmp/always_restart.txt}
     end
 
-    desc "reset", "Reset this app's restart settings"
-    def reset
+    desc "no_restarts", "Reset this app's restart settings"
+    def no_restarts
       return unless is_powable?
       FileUtils.rm_f Dir.glob('tmp/*restart.txt')
     end
