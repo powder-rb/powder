@@ -12,6 +12,7 @@ module Powder
     default_task :help
 
     map '-r' => 'restart'
+    map '-a' => 'always_restart'
     map '-l' => 'list'
     map '-L' => 'link'
     map '-d' => 'default'
@@ -97,6 +98,13 @@ module Powder
       return unless is_powable?
       FileUtils.mkdir_p('tmp')
       %x{touch tmp/restart.txt}
+    end
+
+    desc "always_restart", "Always restart current pow"
+    def always_restart
+      return unless is_powable?
+      FileUtils.mkdir_p('tmp')
+      %x{touch tmp/always_restart.txt}
     end
 
     desc "list", "List current pows"
