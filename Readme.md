@@ -108,6 +108,11 @@ powder manages [pow](http://pow.cx/)
 
     $ powder down
     => Disable Pow
+    
+# Contributing #
+Powder now opperates a "no issues, just pull requests" policy. The gem really is so simple that there is no excuse not to fix any problems that you find, or implement any features that you want. Hack away, submit a pull request and we'll be notified. We're pretty up for accepting just about anything into powder, but it has to be directly related to managing pow (of course). If it's not, there may be some debate!
+
+Get hacking!
 
 # Contributors #
 
