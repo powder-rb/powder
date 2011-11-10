@@ -1,0 +1,219 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "POWDER" "1" "November 2011" "" ""
+.
+.SH "NAME"
+\fBpowder\fR \- manage Pow Rack server
+.
+.SH "SYNOPSIS"
+\fBpowder\fR
+.
+.SH "DESCRIPTION"
+Command\-line management utility for 37signals\' Pow zero\-configuration Rack server for OS X (http://pow\.cx/)\.
+.
+.SH "HOMEPAGE"
+https://github\.com/Rodreegez/powder
+.
+.SH "EXAMPLES"
+.
+.SS "Display usage information"
+\fB$ powder [\-h|help]\fR
+.
+.br
+=> Display usage information
+.
+.br
+# Lists name and brief descriptions of the tasks available
+.
+.SS "Linking applications in Pow"
+powder will attempt to read \.powder, which names a default symlink for the current project
+.
+.P
+\fB$ powder link\fR
+.
+.br
+=> Link the current dir to ~/\.pow/\fIcurrent_directory\fR
+.
+.P
+\fB$ powder link [bacon]\fR
+.
+.br
+=> Link the current dir to ~/\.pow/bacon
+.
+.br
+=> Create \.powder, contents bacon
+.
+.P
+\fB$ powder link [bacon] \-\-no\-create\fR
+.
+.br
+=> Link the current dir to ~/\.pow/bacon
+.
+.P
+\fB$ powder link [bacon] \-\-force\fR
+.
+.br
+=> Remove the current pow symlink, and \.powder
+.
+.br
+=> Link the current dir to ~/\.pow/bacon
+.
+.br
+=> Create \.powder, contents bacon
+.
+.P
+For both forms of link, if the current directory doesn\'t look like an app that can be powed it will offer to download a basic \fBconfig\.ru\fR for Rails 2
+.
+.SS "Unlinking applications"
+\fB$ powder unlink\fR
+.
+.br
+=> Unlink current_dir or the symlink defined in \.powder
+.
+.P
+\fB$ powder unlink bacon\fR
+.
+.br
+=> Unlink bacon
+.
+.P
+\fB$ powder cleanup\fR
+.
+.br
+=> remove all invalid symbolic links
+.
+.SS "Working with Pow"
+\fB$ powder config\fR
+.
+.br
+=> Get Pow\'s current configuration information
+.
+.P
+\fB$ powder list\fR
+.
+.br
+=> List all the current apps linked in ~/\.pow
+.
+.br
+# aliased as \fBpowder \-l\fR
+.
+.P
+\fB$ powder status\fR
+.
+.br
+=> Get Pow\'s current status information
+.
+.P
+\fB$ powder version\fR
+.
+.br
+=> Returns the current powder version
+.
+.br
+# aliased as \fBpowder \-v\fR
+.
+.SS "Working with applications"
+\fB$ powder open\fR
+.
+.br
+=> Opens the pow link in a browser
+.
+.br
+# aliased as powder \-o
+.
+.P
+\fB$ powder open [bacon]\fR
+.
+.br
+=> Opens http://bacon\.dev in a browser
+.
+.br
+# if you have set up alternative top level domains in \.powconfig,
+.
+.br
+# then the first listed domain will be opened\.
+.
+.SS "Managing application restarts"
+\fB$ powder restart\fR
+.
+.br
+=> Restart the current app
+.
+.br
+# aliased as \fBpowder \-r\fR
+.
+.P
+\fB$ powder always_restart\fR
+.
+.br
+=> Always restart the current app
+.
+.br
+# aliased as powder \-a
+.
+.P
+\fB$ powder no_restarts\fR
+.
+.br
+=> don\'t do any automatic restarting of the current app
+.
+.SS "Working with logs"
+\fB$ powder applog\fR
+.
+.br
+=> tail the log of the current app
+.
+.P
+\fB$ powder log\fR
+.
+.br
+=> Tails the pow log\.
+.
+.br
+# Not the application log, but the pow log, available at
+.
+.br
+# ~/Library/Logs/Pow/apps/#{app\-directory}\.log
+.
+.SS "Installing and uninstalling Pow"
+\fB$ powder install\fR
+.
+.br
+=> Installs pow server
+.
+.br
+# (I know, "curl get\.pow\.cx | sh" isn\'t hard, but this is \fIeven\fR easier)
+.
+.P
+\fB$ powder uninstall\fR
+.
+.br
+=> Uninstalls pow server
+.
+.P
+\fB$ powder update\fR
+.
+.br
+=> Updates pow server
+.
+.br
+# Really this is just an alias to powder install, but it feels more natural
+.
+.br
+# this way\.
+.
+.SS "Enabling and Disabling Pow"
+\fB$ powder up\fR
+.
+.br
+=> Enable Pow
+.
+.P
+\fB$ powder down\fR
+.
+.br
+=> Disable Pow
+.
+.SH "AUTHOR"
+Built by rodreegez \fIhttps://github\.com/Rodreegez\fR and philnash \fIhttps://github\.com/philnash\fR\.
