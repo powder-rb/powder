@@ -287,7 +287,7 @@ module Powder
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
       elsif legacy = (is_rails2_app? || is_radiant_app?)
-        say "This appears to be a #{legacy} applicaton. You need a config.ru file."
+        say "This appears to be a #{legacy} application. You need a config.ru file."
         if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
           uri = URI.parse("https://raw.github.com/gist/909308")
           http = Net::HTTP.new(uri.host, uri.port)
