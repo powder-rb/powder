@@ -87,6 +87,24 @@ powder manages [pow](http://pow.cx/)
     => Returns the current powder version
     # aliased as powder -v
 
+    $ powder env
+    => Displays your current custom pow environment variables
+    # Pow reads environment varialbles from .powenv
+
+    $ powder env_reset
+    => Deletes your .powevn, removing all custom environment variables.
+
+    $ powder env BACON chunky
+    => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] == "chunky"
+    # Remove an ENV by passing in no value, eg: powder env BACON
+    # If you already have a .gitignore, the newly created .powenv will also be ignored automatically.
+
+    $ powder [production|development|test]
+    => Run your Rails app as Production
+    # aliased as powder [prod|dev]
+    # This is a wrapper for powder env RAILS_ENV ...
+
+    
 ### Install and uninstall Pow ###
 
     $ powder install

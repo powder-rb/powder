@@ -21,9 +21,49 @@ module Powder
     map 'update' => 'install'
 
     POWDER_CONFIG = ".powder"
+    POW_ENV = ".powenv"
     POW_PATH = "#{ENV['HOME']}/.pow"
     POW_DAEMON_PLIST_PATH="#{ENV['HOME']}/Library/LaunchAgents/cx.pow.powd.plist"
     POW_FIREWALL_PLIST_PATH = "/Library/LaunchDaemons/cx.pow.firewall.plist"
+
+    desc "env", "Pass an arbitrary environment variable to pow"
+    def env(key = nil, value = nil)
+      if key.nil?
+        show_env
+      else
+        if value.nil?
+          remove_env(key)
+        else
+          create_or_update_env(key, value)
+        end
+      end
+    end
+
+    desc "env_reset", "Remove all custom environment variables"
+    def env_reset
+      %x{rm .powenv} if powenv_exists?
+    end
+
+    desc "test", "Run pow with RAILS_ENV=test"
+    def test
+      env("RAILS_ENV", "test")
+    end
+
+    desc "dev", "Run pow with RAILS_ENV=development"
+    def development
+      env("RAILS_ENV", "development")
+    end
+
+    desc "dev", "An alias to development"
+    alias :dev :development
+
+    desc "production", "Run pow with RAILS_ENV=development"
+    def production
+      rails_env("RAILS_ENV", "production")
+    end
+
+    desc "prod", "An alias to development"
+    alias :prod :production
 
     desc "up", "Enable pow"
     def up
@@ -241,6 +281,44 @@ module Powder
     end
 
     private
+
+    def powenv_exists?
+      File.exists?(POW_ENV)
+    end
+
+    def show_env
+      if powenv_exists?
+        say %x{cat #{POW_ENV}}
+      else
+        say "\nYou haven't yet configured any custom environment variables for pow."
+        say "Try `powder env BACON chunky` or `powder production`.\n\n"
+      end
+    end
+
+    def remove_env(key)
+      if powenv_exists? && File.readlines(POW_ENV).grep(/export #{key}=/).any?
+        %x{sed -i '' '/^export #{key}=.*$/d' #{POW_ENV}}
+      end
+    end
+
+    def create_or_update_env(key, value)
+      if powenv_exists? && File.readlines(POW_ENV).grep(/export #{key}=/).any?
+        %x{sed -i '' 's/^export #{key}=.*$/export #{key}=#{value}/' #{POW_ENV}}
+        say "Modified #{POW_ENV}"
+      else
+        %x{echo "export #{key}=#{value}" >> #{POW_ENV} && touch tmp/restart.txt}
+        say "Appended to #{POW_ENV}"
+        gitignore POW_ENV unless powenv_exists?
+      end
+    end
+
+    def gitignore(filename)
+      if File.exists?(".gitignore") && File.readlines(".gitignore").grep(filename).none?
+        %x{echo #{filename} >> .gitignore}
+        say "You'll probably be wanting to .gitignore that new .powenv file…"
+        say "Here, let me take care of that for you."
+      end
+    end
 
     def current_dir_name
       File.basename(%x{pwd}.chomp)
