@@ -1,25 +1,21 @@
 require 'sinatra'
 require 'logger'
-require 'yaml'
 
 module Powder  
   class Server < Sinatra::Base
     POW_PATH = "#{ENV['HOME']}/.pow"
-    LOG = ::Logger.new('log/development.log')
-    
+  
     before do
-      @apps = YAML::load_file("config.yml")[request.host]
+      @pow_app = `cat app.txt`.strip
     end
     
     # Routes ------------------------------------------------------------------
     get '/restart' do
       to_url = redirect_url(params[:redirect])
-      @apps.each do |app|
-        Dir.chdir(pow_dir(app)) do
-          `powder restart`
-          to_url ||= pow_url(app)
-        end
-      end
+      Dir.chdir(pow_dir(@pow_app)) do
+        `powder restart`
+        to_url ||= pow_url(@pow_app)
+       end
       redirect to_url
     end
     
@@ -45,10 +41,6 @@ module Powder
       else
         'dev'
       end
-    end
-
-    def log(msg)
-      LOG.debug(msg)
     end
   end
 end

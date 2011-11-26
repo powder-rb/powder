@@ -100,6 +100,24 @@ module Powder
       symlink_path = "#{POW_PATH}/default"
       FileUtils.rm_f symlink_path if File.exists?(symlink_path)
     end
+    
+    desc "server", "Starts a webserver to provide powder functionality"
+    def server(status="up")
+      return unless is_powable?
+      app = get_pow_name
+      Dir.chdir(File.dirname(__FILE__) +"/../lib/server") do
+        if status == "up"
+          link("powder-server")
+          File.open("app.txt", "w") do |f|
+            f.puts(app)
+          end
+          say "The powder server is now active for #{app}"
+        else
+          unlink
+          say "The powder server is no longer active for #{app}"
+        end
+      end
+    end
 
     desc "restart", "Restart current pow"
     def restart
@@ -186,12 +204,6 @@ module Powder
     desc "version", "Shows the version"
     def version
        say "powder #{Powder::VERSION}"
-    end
-    
-    desc "server", "Starts a webserver to provide powder functionality"
-    def server(status, apps =[])
-      say status
-      say Dir.pwd
     end
 
     desc "host", "Updates hosts file to map pow domains to 127.0.0.1"
