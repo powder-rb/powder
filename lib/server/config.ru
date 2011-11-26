@@ -1,3 +1,3 @@
-Dir["./lib/*.rb"].each {|file| require file }
+Dir["./*.rb"].each {|file| require file }
 
 run Powder::Server

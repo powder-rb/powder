@@ -187,6 +187,12 @@ module Powder
     def version
        say "powder #{Powder::VERSION}"
     end
+    
+    desc "server", "Starts a webserver to provide powder functionality"
+    def server(status, apps =[])
+      say status
+      say Dir.pwd
+    end
 
     desc "host", "Updates hosts file to map pow domains to 127.0.0.1"
     def host
