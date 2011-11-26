@@ -101,20 +101,24 @@ module Powder
       FileUtils.rm_f symlink_path if File.exists?(symlink_path)
     end
     
-    desc "server", "Starts a webserver to provide powder functionality"
+    desc "server", "Starts a webserver to provide powder functionality. Pass 'restart' to restart or 'down' to kill the powder server"
     def server(status="up")
       return unless is_powable?
       app = get_pow_name
       Dir.chdir(File.dirname(__FILE__) +"/../lib/server") do
-        if status == "up"
+        case status 
+        when "up"
           link("powder-server")
           File.open("app.txt", "w") do |f|
             f.puts(app)
           end
-          say "The powder server is now active for #{app}"
-        else
+          say "The powder server is now active for #{app}."
+        when "restart"
+          restart
+          say "The powder server will restart."
+        when "down"
           unlink
-          say "The powder server is no longer active for #{app}"
+          say "The powder server is no longer active for #{app}."
         end
       end
     end
