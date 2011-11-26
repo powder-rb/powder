@@ -15,7 +15,7 @@ module Powder
       Dir.chdir(pow_dir(@pow_app)) do
         `powder restart`
         to_url ||= pow_url(@pow_app)
-       end
+      end
       redirect to_url
     end
     
