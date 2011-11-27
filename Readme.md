@@ -121,6 +121,10 @@ Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github
 Massive thanks to all our great
 [contributors](https://github.com/Rodreegez/powder/contributors)
 
+# Related tools #
+
+* [Powser](https://github.com/phil-monroe/powser) - Powder for your browser!
+
 ## Copyright ##
 
 Copyright (c) 2011 Adam Rogers and Phil Nash. See LICENSE for details.
