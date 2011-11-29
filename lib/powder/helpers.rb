@@ -90,5 +90,13 @@ module Powder
         'dev'
       end
     end
+    
+    def pow_apps
+      Dir[POW_PATH + "/*"].map do |link|
+        realpath = File.readlink(link)
+        app_is_current = (realpath == Dir.pwd) ? '*' : ' '
+        [app_is_current, File.basename(link), realpath.gsub(ENV['HOME'], '~')]
+      end
+    end
   end
 end

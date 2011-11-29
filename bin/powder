@@ -4,8 +4,7 @@ require 'rubygems'
 require 'thor'
 require 'fileutils'
 require 'net/https'
-require 'powder/version'
-require 'powder/helpers'
+require 'powder'
 
 
 module Powder
@@ -120,12 +119,7 @@ module Powder
 
     desc "list", "List current pows"
     def list
-      pows = Dir[POW_PATH + "/*"].map do |link|
-        realpath = File.readlink(link)
-        app_is_current = (realpath == Dir.pwd) ? '*' : ' '
-        [app_is_current, File.basename(link), realpath.gsub(ENV['HOME'], '~')]
-      end
-      print_table(pows)
+      print_table(pow_apps)
     end
 
     desc "open", "Open a pow in the browser"
