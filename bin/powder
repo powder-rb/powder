@@ -304,21 +304,21 @@ module Powder
     end
 
     def create_or_update_env(key, value)
-      if powenv_exists? && File.readlines(POW_ENV).grep(/export #{key}=/).any?
+      if exists = powenv_exists? && File.readlines(POW_ENV).grep(/export #{key}=/).any?
         %x{sed -i '' 's/^export #{key}=.*$/export #{key}=#{value}/' #{POW_ENV}}
         say "Modified #{POW_ENV}"
       else
         %x{echo "export #{key}=#{value}" >> #{POW_ENV} && touch tmp/restart.txt}
         say "Appended to #{POW_ENV}"
-        gitignore POW_ENV unless powenv_exists?
+        gitignore POW_ENV unless exists
       end
     end
 
     def gitignore(filename)
-      if File.exists?(".gitignore") && File.readlines(".gitignore").grep(filename).none?
+      if File.exists?(".gitignore") && File.readlines(".gitignore").grep(Regexp.new(filename)).none?
         %x{echo #{filename} >> .gitignore}
-        say "You'll probably be wanting to .gitignore that new .powenv file…"
-        say "Here, let me take care of that for you."
+        say "\nYou'll probably be wanting to .gitignore that new .powenv file…"
+        say "Here, let me take care of that for you.\n\n"
       end
     end
 
