@@ -31,17 +31,13 @@ module Powder
       if key.nil?
         show_env
       else
-        if value.nil?
-          remove_env(key)
-        else
-          create_or_update_env(key, value)
-        end
+        value.nil? ? remove_env(key) : create_or_update_env(key, value)
       end
     end
 
     desc "env_reset", "Remove all custom environment variables"
     def env_reset
-      %x{rm .powenv} if powenv_exists?
+      %x{rm .powenv && touch .powenv} if powenv_exists?
     end
 
     desc "test", "Run pow with RAILS_ENV=test"
