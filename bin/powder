@@ -287,11 +287,13 @@ module Powder
     end
 
     def show_env
-      if powenv_exists?
-        say %x{cat #{POW_ENV}}
+      if powenv_exists? && File.readlines(POW_ENV).any?
+        say %x{echo && cat #{POW_ENV} && echo}
       else
         say "\nYou haven't yet configured any custom environment variables for pow."
-        say "Try `powder env BACON chunky` or `powder production`.\n\n"
+        say "Try `powder env BACON chunky` to set ENV[\"BACON\"]=chunky"
+        say " or `powder env BACON` to remove ENV[\"BACON\"]"
+        say " or `powder prod` to set RAILS_ENV=production.\n\n"
       end
     end
 
