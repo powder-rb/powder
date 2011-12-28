@@ -313,7 +313,7 @@ module Powder
     def gitignore(filename)
       if File.exists?(".gitignore") && File.readlines(".gitignore").grep(Regexp.new(filename)).none?
         %x{echo #{filename} >> .gitignore}
-        say "\nYou'll probably be wanting to .gitignore that new .powenv file…"
+        say "\nYou'll probably be wanting to .gitignore that new .powenv file..."
         say "Here, let me take care of that for you.\n\n"
       end
     end
