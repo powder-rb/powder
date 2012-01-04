@@ -121,6 +121,12 @@ module Powder
       FileUtils.rm_f Dir.glob('tmp/*restart.txt')
     end
 
+    
+    desc "respawn", "Restart the pow process"
+    def respawn
+      `launchctl stop cx.pow.powd` 
+    end
+
     desc "list", "List current pows"
     def list
       pows = Dir[POW_PATH + "/*"].map do |link|
