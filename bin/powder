@@ -124,7 +124,7 @@ module Powder
     
     desc "respawn", "Restart the pow process"
     def respawn
-      `launchctl stop cx.pow.powd` 
+      %x{launchctl stop cx.pow.powd}
     end
 
     desc "list", "List current pows"
