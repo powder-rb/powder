@@ -55,10 +55,10 @@ module Powder
 
     desc "production", "Run pow with RAILS_ENV=development"
     def production
-      rails_env("RAILS_ENV", "production")
+      env("RAILS_ENV", "production")
     end
 
-    desc "prod", "An alias to development"
+    desc "prod", "An alias to production"
     alias :prod :production
 
     desc "up", "Enable pow"
