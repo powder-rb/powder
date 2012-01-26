@@ -1,3 +1,9 @@
+
+# PLEASE NOTE
+Some idiot (me) changed his username to use a lovercase "r". I figured out I'd get away with it, but unlike the web URLs, it seems the git URLs are case-sensitive :(
+
+`git remote set-url <whatever your remote is called> git@github.com:rodreegez/powder.git` to update the reference.
+
 powder manages [pow](http://pow.cx/)
 
 # Install #
