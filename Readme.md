@@ -40,6 +40,10 @@ powder manages [pow](http://pow.cx/)
     # look like an app that can be powed it will offer to download
     # a basic config.ru for Rails 2
 
+    $ powder default
+    => Link the current dir to ~/.pow/default
+    # Serve this directory for all unhandled domains
+
     $ powder unlink
     => Unlink current_dir or the symlink defined in .powder
 
