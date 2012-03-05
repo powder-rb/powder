@@ -154,7 +154,7 @@ module Powder
       end
     end
 
-    desc "remove", "An alias to Unlink (depreciated)"
+    desc "remove", "An alias to Unlink (deprecated)"
     alias :remove :unlink
 
     desc "cleanup", "Clean up invalid symbolic link"
