@@ -95,7 +95,7 @@ powder manages [pow](http://pow.cx/)
     => Deletes your .powevn, removing all custom environment variables.
 
     $ powder env BACON chunky
-    => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] == "chunky"
+    => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] = "chunky"
     # Remove an ENV by passing in no value, eg: powder env BACON
     # If you already have a .gitignore, the newly created .powenv will also be ignored automatically.
 
