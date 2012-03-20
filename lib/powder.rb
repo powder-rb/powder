@@ -1,2 +1,2 @@
-module Powder
-end
+require 'powder/version'
+require 'powder/helpers'
