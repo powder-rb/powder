@@ -1,9 +1,3 @@
-
-# PLEASE NOTE
-Some idiot (me) changed his username to use a lovercase "r". I figured out I'd get away with it, but unlike the web URLs, it seems the git URLs are case-sensitive :(
-
-`git remote set-url <whatever your remote is called> git@github.com:rodreegez/powder.git` to update the reference.
-
 powder manages [pow](http://pow.cx/)
 
 # Install #
@@ -118,11 +112,6 @@ powder manages [pow](http://pow.cx/)
 
     $ powder down
     => Disable Pow
-    
-# Contributing #
-Powder now opperates a "no issues, just pull requests" policy. The gem really is so simple that there is no excuse not to fix any problems that you find, or implement any features that you want. Hack away, submit a pull request and we'll be notified. We're pretty up for accepting just about anything into powder, but it has to be directly related to managing pow (of course). If it's not, there may be some debate!
-
-Get hacking!
 
 # Contributors #
 
