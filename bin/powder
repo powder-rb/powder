@@ -121,7 +121,7 @@ module Powder
       FileUtils.rm_f Dir.glob('tmp/*restart.txt')
     end
 
-    
+
     desc "respawn", "Restart the pow process"
     def respawn
       %x{launchctl stop cx.pow.powd}
@@ -187,6 +187,17 @@ module Powder
     desc "uninstall", "Uninstalls pow"
     def uninstall
       %x{curl get.pow.cx/uninstall.sh | sh}
+    end
+
+    desc "debug", "Open a debug session"
+    def debug
+      check_rdebug_initializer
+      # Connect to remote rdebug session
+      require 'ruby-debug'
+      Debugger.settings[:autoeval] = true
+      Debugger.settings[:autolist] = 1
+      Debugger.settings[:reload_source_on_change] = true
+      Debugger.start_client
     end
 
     desc "version", "Shows the version"
@@ -332,6 +343,34 @@ module Powder
       else
         'dev'
       end
+    end
+
+    def check_rdebug_initializer
+      rails_initializer =  %x{pwd}.chomp + "/config/initializers/rdebug.rb"
+      rack_initializer =  %x{pwd}.chomp + "/rdebug.rb"
+      unless File.exists?(rack_initializer) || File.exists?(rails_initializer)
+        say "Its appears that the required initializer for rdebug doesn't exists in your application."
+        if yes? "Do you want to create it(y/n)?"
+          if yes? "This is a Rails/Radiant app(y/n)?"
+            create_file rails_initializer, get_gist(1135055)
+          else
+            create_file rack_initializer, get_gist(1262647)
+            append_to_file 'config.ru', "require 'rdebug.rb'"
+          end
+          restart
+        else
+          return false
+        end
+      end
+    end
+
+    def get_gist(id)
+      uri = URI.parse("https://raw.github.com/gist/#{id}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(uri.request_uri)
+      http.request(request).body
     end
   end
 end

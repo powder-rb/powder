@@ -113,6 +113,9 @@ powder manages [pow](http://pow.cx/)
     $ powder down
     => Disable Pow
 
+    $ powder debug
+    => Opens a debug shell with your application environment
+
 # Contributors #
 
 Built by [rodreegez](https://github.com/Rodreegez) and [philnash](https://github.com/philnash).
