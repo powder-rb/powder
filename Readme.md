@@ -68,6 +68,10 @@ powder manages [pow](http://pow.cx/)
     => Opens the pow link in a browser
     # aliased as powder -o
 
+    $ powder open --xip
+    => Opens the xip.io link in a browser
+    # aliased as powder -o -x
+
     $ powder open [bacon]
     => Opens http://bacon.dev in a browser
     # if you have set up alternative top level domains in .powconfig,
