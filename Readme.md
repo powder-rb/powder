@@ -47,6 +47,9 @@ powder manages [pow](http://pow.cx/)
     $ powder cleanup
     => remove all invalid symbolic links
 
+    $ powder xip
+    => Retrieve the xip.io address for the current app
+
 ### Working with Pow ###
 
     $ powder applog
