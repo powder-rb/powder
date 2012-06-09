@@ -138,8 +138,23 @@ module Powder
     end
 
     desc "open", "Open a pow in the browser"
+    method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
     def open(name=nil)
-      %x{open http://#{name || get_pow_name}.#{domain}}
+      if options.xip?
+        local_ip = '0.0.0.0'
+        begin
+          orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true  # turn off reverse DNS resolution temporarily
+          UDPSocket.open do |s|
+            s.connect '64.233.187.99', 1
+            local_ip = s.addr.last.to_s
+          end
+        ensure
+          Socket.do_not_reverse_lookup = orig
+        end
+        %x{open http://#{name || get_pow_name}.#{local_ip}.xip.io}
+      else
+        %x{open http://#{name || get_pow_name}.#{domain}}
+      end
     end
 
     desc "unlink", "Unlink a pow app"
