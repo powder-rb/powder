@@ -220,6 +220,22 @@ module Powder
        say "powder #{Powder::VERSION}"
     end
 
+    desc "xip", "Gets the XIP.io address for this app"
+    def xip
+      require 'socket'
+      orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
+      local_ip = nil
+
+      UDPSocket.open do |s|
+        s.connect "64.233.187.99", 1
+        local_ip = s.addr.last
+      end
+    
+      puts "XIP Address: #{get_pow_name}.#{local_ip}.xip.io"
+    ensure
+      Socket.do_not_reverse_lookup = orig
+    end
+
     desc "host", "Updates hosts file to map pow domains to 127.0.0.1"
     def host
       hosts_file_path = "/etc/hosts"
