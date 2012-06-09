@@ -271,6 +271,24 @@ module Powder
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
     end
+    
+    desc "portmap PORT", "Map a port to an app"
+    method_option :name, :type => :string, :aliases => '-n', :desc => 'name of the port map'
+    method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
+    def portmap(port)
+      if File.symlink?(POW_PATH)
+        name = options.name ? options.name : get_pow_name
+        app_path = "#{POW_PATH}/#{name}"
+        FileUtils.rm_f(app_path) if options[:force]
+        File.open(app_path, 'w') do |file|
+          file.write(port)
+        end
+        say "Your application is now available at http://#{name}.#{domain}/"
+      else
+        say "Pow is not installed."
+      end
+
+    end
 
     private
 
