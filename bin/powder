@@ -23,6 +23,7 @@ module Powder
     POWDER_CONFIG = ".powder"
     POW_ENV = ".powenv"
     POW_PATH = "#{ENV['HOME']}/.pow"
+    POW_CONFIG = "#{ENV['HOME']}/.powconfig"
     POW_DAEMON_PLIST_PATH="#{ENV['HOME']}/Library/LaunchAgents/cx.pow.powd.plist"
     POW_FIREWALL_PLIST_PATH = "/Library/LaunchDaemons/cx.pow.firewall.plist"
 
@@ -287,7 +288,8 @@ module Powder
 
     desc "config", "Shows current pow configuration"
     def config
-      results = %x{curl --silent -H host:pow localhost/config.json}.gsub(':','=>')
+      http_port = ":" + configured_pow_http_port.to_s
+      results = %x{curl --silent -H host:pow localhost#{http_port}/config.json}.gsub(':','=>')
       return say("Error: Cannot get Pow config. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each do |k,v|
@@ -302,7 +304,8 @@ module Powder
 
     desc "status", "Shows current pow status"
     def status
-      results = %x{curl --silent -H host:pow localhost/status.json}.gsub(':','=>')
+      http_port = ":" + configured_pow_http_port.to_s
+      results = %x{curl --silent -H host:pow localhost#{http_port}/status.json}.gsub(':','=>')
       return say("Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
@@ -381,6 +384,12 @@ module Powder
       end
 
       return nil
+    end
+
+    def configured_pow_http_port
+      return 20559 unless File.exists?(POW_CONFIG)
+
+      return File.open(POW_CONFIG).read.match(/export[\s]+POW_HTTP_PORT[\s]*=[\s]*(\d+)/) || 20559
     end
 
     def current_dir_pow_name
