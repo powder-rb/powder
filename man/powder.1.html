@@ -111,6 +111,10 @@
   => Link the current dir to ~/.pow/bacon<br />
   => Create .powder, contents bacon</p>
 
+<p>  <code>$ powder default</code>
+  => Link the current dir to ~/.pow/default
+  # Serve this directory for all unhandled domains</p>
+
 <p>For both forms of link, if the current directory doesn't
 look like an app that can be powed it will offer to download
 a basic <strong>config.ru</strong> for Rails 2</p>
@@ -153,6 +157,18 @@ a basic <strong>config.ru</strong> for Rails 2</p>
   # if you have set up alternative top level domains in .powconfig,<br />
   # then the first listed domain will be opened.</p>
 
+<p>  <code>$ powder open --browser Safari</code>
+  => Opens the pow link in a specific browser (in this case, Safari)
+  # Also aliased as -b</p>
+
+<p>  <code>$ powder open -b 'Google Chrome'</code>
+  => Opens the pow link with browsers with more than one word</p>
+
+<p>  # Should also works with all the other 'open' options:
+  <code>$ powder open bacon -b Safari</code>
+  <code>$ powder open --xip -b Firefox</code>
+  <code>$ powder -o -x -b 'Google Chrome'</code></p>
+
 <h3 id="Managing-application-restarts">Managing application restarts</h3>
 
 <p>  <code>$ powder restart</code><br />
@@ -176,6 +192,25 @@ a basic <strong>config.ru</strong> for Rails 2</p>
   # Not the application log, but the pow log, available at<br />
   # ~/Library/Logs/Pow/apps/#{app-directory}.log</p>
 
+<h3 id="Working-with-Environment-Variables">Working with Environment Variables</h3>
+
+<p>  <code>$ powder env</code>
+  => Displays your current custom pow environment variables
+  # Pow reads environment varialbles from .powenv</p>
+
+<p>  <code>$ powder env_reset</code>
+  => Deletes your .powevn, removing all custom environment variables.</p>
+
+<p>  <code>$ powder env BACON chunky</code>
+  => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] = "chunky"
+  # Remove an ENV by passing in no value, eg: powder env BACON
+  # If you already have a .gitignore, the newly created .powenv will also be ignored automatically.</p>
+
+<p>  <code>$ powder [production|development|test]</code>
+  => Run your Rails app as Production
+  # aliased as powder [prod|dev]
+  # This is a wrapper for powder env RAILS_ENV ...</p>
+
 <h3 id="Installing-and-uninstalling-Pow">Installing and uninstalling Pow</h3>
 
 <p>  <code>$ powder install</code><br />
@@ -198,6 +233,9 @@ a basic <strong>config.ru</strong> for Rails 2</p>
 <p>  <code>$ powder down</code><br />
   => Disable Pow</p>
 
+<p>  <code>$ powder debug</code>
+  => Opens a debug shell with your application environment</p>
+
 <h2 id="AUTHOR">AUTHOR</h2>
 
 <p>Built by <a href="https://github.com/Rodreegez">rodreegez</a> and <a href="https://github.com/philnash">philnash</a>.</p>
@@ -205,7 +243,7 @@ a basic <strong>config.ru</strong> for Rails 2</p>
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>November 2011</li>
+    <li class='tc'>August 2012</li>
     <li class='tr'>powder(1)</li>
   </ol>
 

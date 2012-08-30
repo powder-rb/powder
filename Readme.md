@@ -78,7 +78,7 @@ powder manages [pow](http://pow.cx/)
     # then the first listed domain will be opened.
 
     $ powder open --browser Safari
-    => Opens the pow link in a specific browser (Safari in this case)
+    => Opens the pow link in a specific browser (in this case, Safari)
     # Also aliased as -b
 
     $ powder open -b 'Google Chrome'

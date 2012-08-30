@@ -38,7 +38,11 @@ powder will attempt to read .powder, which names a default symlink for the curre
   `$ powder link [bacon] --force`  
   => Remove the current pow symlink, and .powder  
   => Link the current dir to ~/.pow/bacon  
-  => Create .powder, contents bacon  
+  => Create .powder, contents bacon
+
+  `$ powder default`
+  => Link the current dir to ~/.pow/default
+  # Serve this directory for all unhandled domains
 
 For both forms of link, if the current directory doesn't
 look like an app that can be powed it will offer to download
@@ -82,6 +86,18 @@ a basic **config.ru** for Rails 2
   # if you have set up alternative top level domains in .powconfig,  
   # then the first listed domain will be opened.
 
+  `$ powder open --browser Safari`
+  => Opens the pow link in a specific browser (in this case, Safari)
+  # Also aliased as -b
+
+  `$ powder open -b 'Google Chrome'`
+  => Opens the pow link with browsers with more than one word
+
+  # Should also works with all the other 'open' options:
+  `$ powder open bacon -b Safari`
+  `$ powder open --xip -b Firefox`
+  `$ powder -o -x -b 'Google Chrome'`
+
 ### Managing application restarts
 
   `$ powder restart`  
@@ -105,6 +121,25 @@ a basic **config.ru** for Rails 2
   # Not the application log, but the pow log, available at  
   # ~/Library/Logs/Pow/apps/#{app-directory}.log
 
+### Working with Environment Variables
+
+  `$ powder env`
+  => Displays your current custom pow environment variables
+  # Pow reads environment varialbles from .powenv
+
+  `$ powder env_reset`
+  => Deletes your .powevn, removing all custom environment variables.
+
+  `$ powder env BACON chunky`
+  => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] = "chunky"
+  # Remove an ENV by passing in no value, eg: powder env BACON
+  # If you already have a .gitignore, the newly created .powenv will also be ignored automatically.
+
+  `$ powder [production|development|test]`
+  => Run your Rails app as Production
+  # aliased as powder [prod|dev]
+  # This is a wrapper for powder env RAILS_ENV ...
+
 ### Installing and uninstalling Pow
 
   `$ powder install`  
@@ -126,6 +161,9 @@ a basic **config.ru** for Rails 2
 
   `$ powder down`  
   => Disable Pow
+
+  `$ powder debug`
+  => Opens a debug shell with your application environment
 
 ## AUTHOR
 

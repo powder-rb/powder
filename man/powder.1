@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "POWDER" "1" "November 2011" "" ""
+.TH "POWDER" "1" "August 2012" "" ""
 .
 .SH "NAME"
 \fBpowder\fR \- manage Pow Rack server
@@ -61,6 +61,9 @@ powder will attempt to read \.powder, which names a default symlink for the curr
 .
 .br
 => Create \.powder, contents bacon
+.
+.P
+\fB$ powder default\fR => Link the current dir to ~/\.pow/default # Serve this directory for all unhandled domains
 .
 .P
 For both forms of link, if the current directory doesn\'t look like an app that can be powed it will offer to download a basic \fBconfig\.ru\fR for Rails 2
@@ -134,6 +137,15 @@ For both forms of link, if the current directory doesn\'t look like an app that 
 .br
 # then the first listed domain will be opened\.
 .
+.P
+\fB$ powder open \-\-browser Safari\fR => Opens the pow link in a specific browser (in this case, Safari) # Also aliased as \-b
+.
+.P
+\fB$ powder open \-b \'Google Chrome\'\fR => Opens the pow link with browsers with more than one word
+.
+.P
+# Should also works with all the other \'open\' options: \fB$ powder open bacon \-b Safari\fR \fB$ powder open \-\-xip \-b Firefox\fR \fB$ powder \-o \-x \-b \'Google Chrome\'\fR
+.
 .SS "Managing application restarts"
 \fB$ powder restart\fR
 .
@@ -176,6 +188,18 @@ For both forms of link, if the current directory doesn\'t look like an app that 
 .br
 # ~/Library/Logs/Pow/apps/#{app\-directory}\.log
 .
+.SS "Working with Environment Variables"
+\fB$ powder env\fR => Displays your current custom pow environment variables # Pow reads environment varialbles from \.powenv
+.
+.P
+\fB$ powder env_reset\fR => Deletes your \.powevn, removing all custom environment variables\.
+.
+.P
+\fB$ powder env BACON chunky\fR => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] = "chunky" # Remove an ENV by passing in no value, eg: powder env BACON # If you already have a \.gitignore, the newly created \.powenv will also be ignored automatically\.
+.
+.P
+\fB$ powder [production|development|test]\fR => Run your Rails app as Production # aliased as powder [prod|dev] # This is a wrapper for powder env RAILS_ENV \.\.\.
+.
 .SS "Installing and uninstalling Pow"
 \fB$ powder install\fR
 .
@@ -214,6 +238,9 @@ For both forms of link, if the current directory doesn\'t look like an app that 
 .
 .br
 => Disable Pow
+.
+.P
+\fB$ powder debug\fR => Opens a debug shell with your application environment
 .
 .SH "AUTHOR"
 Built by rodreegez \fIhttps://github\.com/Rodreegez\fR and philnash \fIhttps://github\.com/philnash\fR\.
