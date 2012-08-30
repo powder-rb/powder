@@ -77,6 +77,18 @@ powder manages [pow](http://pow.cx/)
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
 
+    $ powder open --browser Safari
+    => Opens the pow link in a specific browser (in this case, Safari)
+    # Also aliased as -b
+
+    $ powder open -b 'Google Chrome'
+    => Opens the pow link with browsers with more than one word
+
+    # Should also works with all the other 'open' options:
+    $ powder open bacon -b Safari
+    $ powder open --xip -b Firefox
+    $ powder -o -x -b 'Google Chrome'
+
     $ powder restart
     => Restart the current app
     # aliased as powder -r
