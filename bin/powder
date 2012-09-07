@@ -76,6 +76,9 @@ module Powder
       end
     end
 
+    desc "start", "An alias to up"
+    alias :start :up
+
     desc "down", "Disable pow"
     def down
       if File.exists? POW_FIREWALL_PLIST_PATH
@@ -98,6 +101,9 @@ module Powder
         %x{sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0}
       end
     end
+
+    desc "stop", "An alias to down"
+    alias :stop :down
 
     desc "link", "Link a pow"
     method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
