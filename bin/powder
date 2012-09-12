@@ -5,6 +5,7 @@ require 'thor'
 require 'fileutils'
 require 'net/https'
 require 'powder/version'
+require 'timeout'
 
 module Powder
   class CLI < Thor
@@ -251,7 +252,20 @@ module Powder
       Debugger.settings[:autoeval] = true
       Debugger.settings[:autolist] = 1
       Debugger.settings[:reload_source_on_change] = true
-      Debugger.start_client
+      connected = false
+      begin
+        Timeout::timeout(15) do
+          while !connected
+            begin
+              Debugger.start_client && connected = true
+            rescue
+              next
+            end
+          end
+        end
+      rescue
+        say "Tried to connect for 15 seconds. Is the server ready for a debugger connection?"
+      end
     end
 
     desc "version", "Shows the version"
