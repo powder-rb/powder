@@ -5,7 +5,6 @@ require 'thor'
 require 'fileutils'
 require 'net/https'
 require 'powder/version'
-require 'timeout'
 
 module Powder
   class CLI < Thor
