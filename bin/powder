@@ -253,19 +253,15 @@ module Powder
       Debugger.settings[:autolist] = 1
       Debugger.settings[:reload_source_on_change] = true
       connected = false
-      begin
-        Timeout::timeout(15) do
-          while !connected
-            begin
-              Debugger.start_client && connected = true
-            rescue
-              next
-            end
-          end
+      start = Time.now.to_i
+      while !connected && (start - Time.now.to_i) < 15
+        begin
+          Debugger.start_client && connected = true
+        rescue
+          next
         end
-      rescue
-        say "Tried to connect for 15 seconds. Is the server ready for a debugger connection?"
       end
+      say "Tried to connect for 15 seconds. Is the server ready for a debugger connection?" unless connected
     end
 
     desc "version", "Shows the version"
