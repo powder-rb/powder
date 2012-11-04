@@ -475,7 +475,7 @@ module Powder
             create_file rails_initializer, get_gist(1135055)
           else
             create_file rack_initializer, get_gist(1262647)
-            append_to_file 'config.ru', "require 'rdebug.rb'"
+            append_to_file 'config.ru', "\nrequire 'rdebug.rb'"
           end
           restart
         else
