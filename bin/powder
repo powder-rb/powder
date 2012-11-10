@@ -253,7 +253,7 @@ module Powder
       Debugger.settings[:reload_source_on_change] = true
       connected = false
       start = Time.now.to_i
-      while !connected && (start - Time.now.to_i) < 15
+      while !connected && (Time.now.to_i - start) < 15
         begin
           Debugger.start_client && connected = true
         rescue
