@@ -4,11 +4,13 @@ require 'rubygems'
 require 'thor'
 require 'fileutils'
 require 'net/https'
+require 'powder'
 require 'powder/version'
 
 module Powder
   class CLI < Thor
     include Thor::Actions
+    include Powder
     default_task :help
 
     map '-r' => 'restart'
@@ -166,10 +168,10 @@ module Powder
 
     desc "list", "List current pows"
     def list
-      pows = Dir[POW_PATH + "/*"].map do |link|
-        realpath = File.readlink(link)
-        app_is_current = (realpath == Dir.pwd) ? '*' : ' '
-        [app_is_current, File.basename(link), realpath.gsub(ENV['HOME'], '~')]
+      pows = Dir[POW_PATH + "/*"].map do |link_or_port|
+        realpath_or_port = get_app_origin(link_or_port)
+        app_is_current = (realpath_or_port == Dir.pwd) ? '*' : ' '
+        [app_is_current, File.basename(link_or_port), realpath_or_port.gsub(ENV['HOME'], '~')]
       end
       print_table(pows)
     end
