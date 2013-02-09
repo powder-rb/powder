@@ -64,6 +64,9 @@ powder manages [pow](http://pow.cx/)
     # Not the application log, but the pow log, available at
     # ~/Library/Logs/Pow/apps/#{app-directory}.log
 
+    $ powder debug
+    => Opens a debug shell with your application environment
+    
     $ powder open
     => Opens the pow link in a browser
     # aliased as powder -o
@@ -143,14 +146,11 @@ powder manages [pow](http://pow.cx/)
 
     $ powder up
     => Enable Pow
-	# aliased as powder stop
+	# aliased as powder start
 	
     $ powder down
     => Disable Pow
-	# aliased as powder start
-
-    $ powder debug
-    => Opens a debug shell with your application environment
+	# aliased as powder stop
 
 # Contributors #
 
