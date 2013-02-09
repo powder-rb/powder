@@ -147,6 +147,11 @@ powder manages [pow](http://pow.cx/)
     $ powder down
     => Disable Pow
 
+	# Or you can use the more convenient aliases
+	
+	$ powder start
+	$ powder stop
+
     $ powder debug
     => Opens a debug shell with your application environment
 
