@@ -354,7 +354,7 @@ module Powder
         say %x{rvm env . -- --env >> .powenv}
         show_env
       else
-        say ".rvmrc is not exists."
+        say ".rvmrc does not exist."
       end
     end
 
