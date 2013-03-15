@@ -48,7 +48,7 @@ module Powder
       env("RAILS_ENV", "test")
     end
 
-    desc "dev", "Run pow with RAILS_ENV=development"
+    desc "development", "Run pow with RAILS_ENV=development"
     def development
       env("RAILS_ENV", "development")
     end
