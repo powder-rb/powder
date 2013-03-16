@@ -1,4 +1,48 @@
-### 0.1.7 ###
+### 2.0.0 / 2013-03-12 ###
+
+* 7 minor change
+
+	* fix debug command: rdebug connection errors
+	([commit](https://github.com/Rodreegez/powder/commit/3ea0a1bc68bd9517e5673cc64d8bf25f41a5e2de))
+	
+	* fix debug command: prepend newline to rdebug.rb require
+	([commit](https://github.com/Rodreegez/powder/commit/cd2e72524c3d91fcddc9b4a5b5420757c959f411))
+
+	* adds 2 aliases: powder up(start) & powder down(stop)
+	([commit](https://github.com/Rodreegez/powder/commit/54cdee5f6f2832d118995f28f28f4a03048c2ae6))
+	
+	* adds open command
+	([commit](https://github.com/Rodreegez/powder/commit/542df46b2fc08b1784280bac0de02d7e662c35c3))
+	
+	* Fixed 'powder list' to display proxy ports.
+	([commit](https://github.com/Rodreegez/powder/commit/804b78b844b73c2349a151e6df7f534a7d98c379))
+
+	* Pow config and status tasks to use localhost:20559
+	([commit](https://github.com/Rodreegez/powder/commit/a2395157e30863af9d8d856a6dbb97b851d445b4))
+	
+	* Manage Pow environment with powder
+	([commit](https://github.com/Rodreegez/powder/commit/5b60045127dc72c1fb3b663a97eb4f5e238d4042))
+
+### 0.1.8 / 2012-06-09 ###
+
+* 5 minor changes
+
+	* Added support for opening app with appname.x.x.x.x.xip.io
+	([commit](https://github.com/Rodreegez/powder/commit/8d2b5641cc79d238edf19350fc74fdac1ad3221d))
+	
+	* Support port mapping in pow 0.4
+	([commit](https://github.com/Rodreegez/powder/commit/d079999fd9b08237835c1c4b373067ad87b19cc3))
+	
+	* add respawn command
+	([commit](https://github.com/rodreegez/powder/commit/e7da3776233d1062335dd5e5d7ee15a3a9e7de0a))
+	
+	* Fix typo in message for generating basic config.ru in legacy apps
+	([commit](https://github.com/rodreegez/powder/commit/2dd3de86d41d0df2b2b1444e9f6526916360fca5))
+	
+	* add a man page
+	([commit](https://github.com/rodreegez/powder/commit/64e6a0cc38184a8ac0dc80d95947d185f2bdd432))
+	
+### 0.1.7 / 2011-11-02 ###
 
 * 1 minor change
 
