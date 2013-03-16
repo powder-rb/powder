@@ -350,7 +350,7 @@ module Powder
 
     desc "env_rvm", "Create or add rvm env to .powenv"
     def env_rvm
-      if File.exists?(".rvmrc")
+      if File.exists?(%x{pwd}.chomp + "/.rvmrc")
         say %x{rvm env . -- --env >> .powenv}
         show_env
       else
