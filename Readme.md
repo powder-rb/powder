@@ -115,7 +115,7 @@ powder manages [pow](http://pow.cx/)
     # Pow reads environment varialbles from .powenv
 
     $ powder env_reset
-    => Deletes your .powevn, removing all custom environment variables.
+    => Deletes your .powenv, removing all custom environment variables.
 
     $ powder env BACON chunky
     => Pass an arbitrary environment variable to pow, eg, ENV["BACON"] = "chunky"
