@@ -148,7 +148,6 @@ module Powder
 
     desc "restart", "Restart current pow"
     def restart
-      return unless is_powable?
       FileUtils.mkdir_p('tmp')
       %x{touch tmp/restart.txt}
     end
