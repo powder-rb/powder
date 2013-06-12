@@ -185,8 +185,10 @@ module Powder
     desc "open", "Open a pow in the browser"
     method_option :browser, :type => :string, :default => false, :aliases => '-b', :desc => 'browser to open with'
     method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
+    method_option :path, :type => :string, :default => '', :aliases => '-p', :desc => 'path to open'
     def open(name=nil)
       browser = options.browser? ? "-a \'#{options.browser}\'" : nil 
+      path = options.path.start_with?('/') ? options.path : '/' + options.path
       if options.xip?
         local_ip = '0.0.0.0'
         begin
@@ -198,9 +200,9 @@ module Powder
         ensure
           Socket.do_not_reverse_lookup = orig
         end
-        %x{open #{browser} http://#{name || get_pow_name}.#{local_ip}.xip.io}
+        %x{open #{browser} http://#{name || get_pow_name}.#{local_ip}.xip.io#{path}}
       else
-        %x{open #{browser} http://#{name || get_pow_name}.#{domain}}
+        %x{open #{browser} http://#{name || get_pow_name}.#{domain}#{path}}
       end
     end
 
