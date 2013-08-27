@@ -107,8 +107,8 @@ module Powder
     alias :stop :down
 
     desc "link", "Link a pow"
-    method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
-    method_option :"no-config", :type => :boolean, :default => false, :alias => '-n', :desc => "do not write a .powder file"
+    method_option :force, :type => :boolean, :default => false, :aliases => '-f', :desc => "remove the old configuration, overwrite .powder"
+    method_option :"no-config", :type => :boolean, :default => false, :aliases => '-n', :desc => "do not write a .powder file"
     def link(name=nil)
       return unless is_powable?
       if File.symlink?(POW_PATH)
@@ -183,7 +183,7 @@ module Powder
 
     desc "open", "Open a pow in the browser"
     method_option :browser, :type => :string, :default => false, :aliases => '-b', :desc => 'browser to open with'
-    method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
+    method_option :xip, :type => :boolean, :default => false, :aliases => '-x', :desc => "open xip.io instead of .domain"
     method_option :path, :type => :string, :default => '', :aliases => '-p', :desc => 'path to open'
     def open(name=nil)
       browser = options.browser? ? "-a \'#{options.browser}\'" : nil
