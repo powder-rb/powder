@@ -455,7 +455,7 @@ module Powder
       elsif legacy = (is_rails2_app? || is_radiant_app?)
         say "This appears to be a #{legacy} application. You need a config.ru file."
         if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
-          uri = URI.parse("https://raw.github.com/gist/909308")
+          uri = URI.parse("https://gist.github.com/raw/909308")
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -514,7 +514,7 @@ module Powder
     end
 
     def get_gist(id)
-      uri = URI.parse("https://raw.github.com/gist/#{id}")
+      uri = URI.parse("https://gist.github.com/raw/#{id}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
