@@ -173,12 +173,27 @@ module Powder
 
     desc "list", "List current pows"
     def list
-      pows = Dir[POW_PATH + "/*"].map do |link_or_port|
-        app_origin = get_app_origin(link_or_port)
-        canonical_pwd = canonicalize_path(Dir.pwd)
-        app_is_current = (app_origin == canonical_pwd ? '*' : ' ')
+      pows = Dir[POW_PATH + "/*"].map do |app_pow_path|
+        app_origin = get_app_origin(app_pow_path)
+
+        if File.directory? app_pow_path
+          absolute_pwd = File.realpath(Dir.pwd)
+          app_current = '*' if absolute_pwd == File.realpath(app_pow_path)
+
+          # check id origin of ./public is a symlink, as requested in issue #84
+          # (perhaps of use when serving static files as described in
+          # http://pow.cx/manual.html#section_2.4 )
+          app_public_path = app_pow_path + File::Separator + "public"
+          if File.symlink? app_public_path
+            app_public_origin = canonicalize_path(app_public_path)
+            app_current = 'P' if absolute_pwd == File.realpath(app_public_path)
+            app_origin += " (with ./public -> #{app_public_origin})"
+          end
+        end
+
         unless app_origin.nil?
-          [app_is_current, File.basename(link_or_port), app_origin]
+          app_current ||= ' '
+          [app_current, File.basename(app_pow_path), app_origin]
         else
           nil #don't include unknowns (e.g. non-port, non-url plain files)
         end
