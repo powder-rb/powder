@@ -174,11 +174,16 @@ module Powder
     desc "list", "List current pows"
     def list
       pows = Dir[POW_PATH + "/*"].map do |link_or_port|
-        realpath_or_port = get_app_origin(link_or_port)
-        app_is_current = (realpath_or_port == Dir.pwd) ? '*' : ' '
-        [app_is_current, File.basename(link_or_port), realpath_or_port.gsub(ENV['HOME'], '~')]
+        app_origin = get_app_origin(link_or_port)
+        canonical_pwd = canonicalize_path(Dir.pwd)
+        app_is_current = (app_origin == canonical_pwd ? '*' : ' ')
+        unless app_origin.nil?
+          [app_is_current, File.basename(link_or_port), app_origin]
+        else
+          nil #don't include unknowns (e.g. non-port, non-url plain files)
+        end
       end
-      print_table(pows)
+      print_table(pows.compact)
     end
 
     desc "open", "Open a pow in the browser"
