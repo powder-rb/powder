@@ -455,12 +455,7 @@ module Powder
       elsif legacy = (is_rails2_app? || is_radiant_app?)
         say "This appears to be a #{legacy} application. You need a config.ru file."
         if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
-          uri = URI.parse("https://gist.github.com/sstephenson/909308/raw")
-          http = Net::HTTP.new(uri.host, uri.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          request = Net::HTTP::Get.new(uri.request_uri)
-          create_file "config.ru",  http.request(request).body
+          create_file "config.ru",  get_gist("https://gist.github.com/sstephenson/909308/raw")
           return true
         else
           say "Did not create config.ru"
@@ -501,9 +496,9 @@ module Powder
         say "Its appears that the required initializer for rdebug doesn't exists in your application."
         if yes? "Do you want to create it(y/n)?"
           if yes? "This is a Rails/Radiant app(y/n)?"
-            create_file rails_initializer, get_gist(1135055)
+            create_file rails_initializer, get_gist("https://gist.github.com/csiszarattila/1135055/raw")
           else
-            create_file rack_initializer, get_gist(1262647)
+            create_file rack_initializer, get_gist("https://gist.github.com/csiszarattila/1262647/raw")
             append_to_file 'config.ru', "\nrequire 'rdebug.rb'"
           end
           restart
@@ -513,8 +508,8 @@ module Powder
       end
     end
 
-    def get_gist(id)
-      uri = URI.parse("https://gist.github.com/raw/#{id}")
+    def get_gist(url)
+      uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
