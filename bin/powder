@@ -514,12 +514,24 @@ module Powder
     end
 
     def get_gist(id)
-      uri = URI.parse("https://gist.github.com/raw/#{id}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      request = Net::HTTP::Get.new(uri.request_uri)
-      http.request(request).body
+      # Github's gist URLs may return redirects which we will need to follow.
+      # This proc calls itself recursively in order to follow at most one
+      # redirect.
+      fetch_gist = Proc.new { |url, limit|
+        raise "Redirect limit reached while trying to fetch a gist at URL: #{url}" if limit == -1
+        uri = URI.parse(url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+        if response.code.start_with? "30" # For 301, 302
+          return fetch_gist.call(response['location'], limit-1)
+        end
+        response.body
+      }
+
+      fetch_gist.call("https://gist.github.com/raw/#{id}", 1)
     end
   end
 end
