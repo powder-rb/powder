@@ -237,7 +237,7 @@ module Powder
     def log
       path_to_log_file = "#{ENV['HOME']}/Library/Logs/Pow/apps/#{current_dir_name}.log"
       if File.exist? path_to_log_file
-        system "tail -f #{path_to_log_file}"
+        clean_system { "tail -f #{path_to_log_file}" }
       else
         say "There is no Pow log file, have you set this application up yet?"
       end
@@ -245,7 +245,7 @@ module Powder
 
     desc "applog", "Tails in current app"
     def applog(env="development")
-      system "tail -f log/#{env}.log" if is_powable?
+      clean_system { "tail -f log/#{env}.log" } if is_powable?
     end
 
     desc "uninstall", "Uninstalls pow"
@@ -515,6 +515,14 @@ module Powder
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Get.new(uri.request_uri)
       http.request(request).body
+    end
+
+    def clean_system
+      begin
+        system(yield)
+      rescue Interrupt => e
+        say "Exiting..."
+      end
     end
   end
 end
