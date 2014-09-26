@@ -237,6 +237,7 @@ module Powder
     def log
       path_to_log_file = "#{ENV['HOME']}/Library/Logs/Pow/apps/#{current_dir_name}.log"
       if File.exist? path_to_log_file
+        trap('INT') { say "\nExiting log..." }
         system "tail -f #{path_to_log_file}"
       else
         say "There is no Pow log file, have you set this application up yet?"
@@ -245,6 +246,7 @@ module Powder
 
     desc "applog", "Tails in current app"
     def applog(env="development")
+      trap('INT') { say "\nExiting applog..." }
       system "tail -f log/#{env}.log" if is_powable?
     end
 
