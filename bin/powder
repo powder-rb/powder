@@ -20,7 +20,6 @@ module Powder
     map '-d' => 'default'
     map '-o' => 'open'
     map '-v' => 'version'
-    map 'update' => 'install'
 
     POWDER_CONFIG = ".powder"
     POW_ENV = ".powenv"
@@ -187,7 +186,7 @@ module Powder
     method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
     method_option :path, :type => :string, :default => '', :aliases => '-p', :desc => 'path to open'
     def open(name=nil)
-      browser = options.browser? ? "-a \'#{options.browser}\'" : nil 
+      browser = options.browser? ? "-a \'#{options.browser}\'" : nil
       path = options.path.start_with?('/') ? options.path : '/' + options.path
       if options.xip?
         local_ip = '0.0.0.0'
@@ -228,15 +227,19 @@ module Powder
       }
     end
 
-    desc "install", "Installs pow"
+    desc "install", "Installs or updates pow"
     def install
       %x{curl get.pow.cx | sh}
     end
+
+    desc "update", "An alias to install"
+    alias :update :install
 
     desc "log", "Tails the Pow log"
     def log
       path_to_log_file = "#{ENV['HOME']}/Library/Logs/Pow/apps/#{current_dir_name}.log"
       if File.exist? path_to_log_file
+        trap('INT') { say "\nExiting log..." }
         system "tail -f #{path_to_log_file}"
       else
         say "There is no Pow log file, have you set this application up yet?"
@@ -245,6 +248,7 @@ module Powder
 
     desc "applog", "Tails in current app"
     def applog(env="development")
+      trap('INT') { say "\nExiting applog..." }
       system "tail -f log/#{env}.log" if is_powable?
     end
 
@@ -331,7 +335,7 @@ module Powder
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
     end
-    
+
     desc "portmap PORT", "Map a port to an app"
     method_option :name, :type => :string, :aliases => '-n', :desc => 'name of the port map'
     method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
@@ -455,12 +459,7 @@ module Powder
       elsif legacy = (is_rails2_app? || is_radiant_app?)
         say "This appears to be a #{legacy} application. You need a config.ru file."
         if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
-          uri = URI.parse("https://raw.github.com/gist/909308")
-          http = Net::HTTP.new(uri.host, uri.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          request = Net::HTTP::Get.new(uri.request_uri)
-          create_file "config.ru",  http.request(request).body
+          create_file "config.ru",  get_gist("https://gist.github.com/sstephenson/909308/raw")
           return true
         else
           say "Did not create config.ru"
@@ -501,9 +500,9 @@ module Powder
         say "Its appears that the required initializer for rdebug doesn't exists in your application."
         if yes? "Do you want to create it(y/n)?"
           if yes? "This is a Rails/Radiant app(y/n)?"
-            create_file rails_initializer, get_gist(1135055)
+            create_file rails_initializer, get_gist("https://gist.github.com/csiszarattila/1135055/raw")
           else
-            create_file rack_initializer, get_gist(1262647)
+            create_file rack_initializer, get_gist("https://gist.github.com/csiszarattila/1262647/raw")
             append_to_file 'config.ru', "\nrequire 'rdebug.rb'"
           end
           restart
@@ -513,8 +512,8 @@ module Powder
       end
     end
 
-    def get_gist(id)
-      uri = URI.parse("https://raw.github.com/gist/#{id}")
+    def get_gist(url)
+      uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
