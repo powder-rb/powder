@@ -1,3 +1,25 @@
+### 0.2.2 / 2014-10-22 ###
+
+* 1 minor change
+
+  * Clean exit from log commands
+  ([commit](https://github.com/rodreegez/powder/commit/dd99b30352ddb7acb78918c02d42794fabbc6355))
+
+### 0.2.1 / 2014-02-06 ###
+
+* 3 minor changes
+
+  * Expands the 'Pow is not installed' message
+  ([commit](https://github.com/rodreegez/powder/commit/64b2e63e54b3cf0e2c49332a38929c6050b03088))
+
+  * Fixes Readme typo
+  ([commit](https://github.com/rodreegez/powder/commit/2d5decd0cc2d5af1d4f4fac606a385aa318f68fb))
+
+  * Updates gist URLs
+  ([commit](https://github.com/rodreegez/powder/commit/96af4fae93bd35a47a6cf0baa99f85aa739d0835))
+
+
+
 ### 0.2.0 / 2013-03-12 ###
 
 * 7 minor change
