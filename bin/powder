@@ -321,7 +321,7 @@ module Powder
     desc "config", "Shows current pow configuration"
     def config
       http_port = ":" + configured_pow_http_port.to_s
-      results = %x{curl --silent -H host:pow localhost#{http_port}/config.json}.gsub(':','=>')
+      results = %x{curl --silent -H host:pow 127.0.0.1#{http_port}/config.json}.gsub(':','=>')
       return say("Error: Cannot get Pow config. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each do |k,v|
