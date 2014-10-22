@@ -21,9 +21,9 @@ module Powder
     map '-o' => 'open'
     map '-v' => 'version'
 
-    MAC_OS_X_VERSION_REGEXP = /^(?<major_version>\d+)\.(?<minor_version>\d+)\.(?<patch_version>\d+)/
+    MAC_OS_X_VERSION_REGEXP = /^(?<major_version>\d+)\.(?<minor_version>\d+)/
     MAC_OS_X_MINOR_VERSION = begin
-      version_string = %x{sw_vers -productVersion}
+      version_string = %x{sw_vers -productVersion}.strip
       version_string.match(MAC_OS_X_VERSION_REGEXP)[:minor_version].to_i
     end
 
