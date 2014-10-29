@@ -165,7 +165,6 @@ module Powder
       FileUtils.rm_f Dir.glob('tmp/*restart.txt')
     end
 
-
     desc "respawn", "Restart the pow process"
     def respawn
       %x{launchctl stop cx.pow.powd}
@@ -220,9 +219,14 @@ module Powder
 
     desc "cleanup", "Clean up invalid symbolic link"
     def cleanup
-      Dir[POW_PATH + "/*"].map { |symlink|
-        FileUtils.rm(symlink) unless File.exists? File.readlink(symlink)
-      }
+      Dir[POW_PATH + "/*"].map do |symlink|
+        begin
+          FileUtils.rm(symlink) unless File.exists?(File.readlink(symlink))
+        rescue
+          # Not all platforms support File.readlink, thus throwing exceptions.
+          # Unfortunately we can't decide then if a symlink is invalid.
+        end
+      end
     end
 
     desc "install", "Installs or updates pow"
