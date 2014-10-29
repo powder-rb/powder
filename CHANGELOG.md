@@ -1,3 +1,11 @@
+### 0.3.0 / 2014-10-29 ###
+
+* 1 minor change
+
+  * Support for OS X Yosemite. Powder reflects the changes in Pow.
+    Pow no longer uses the ipfw firewall, which was deprecated in OS X 10.9
+    and removed in 10.10.
+
 ### 0.2.2 / 2014-10-22 ###
 
 * 1 minor change
@@ -18,11 +26,9 @@
   * Updates gist URLs
   ([commit](https://github.com/rodreegez/powder/commit/96af4fae93bd35a47a6cf0baa99f85aa739d0835))
 
-
-
 ### 0.2.0 / 2013-03-12 ###
 
-* 7 minor change
+* 7 minor changes
 
 	* fix debug command: rdebug connection errors
 	([commit](https://github.com/Rodreegez/powder/commit/3ea0a1bc68bd9517e5673cc64d8bf25f41a5e2de))
