@@ -21,6 +21,12 @@ module Powder
     map '-o' => 'open'
     map '-v' => 'version'
 
+    MAC_OS_X_VERSION_REGEXP = /^(?<major_version>\d+)\.(?<minor_version>\d+)/
+    MAC_OS_X_MINOR_VERSION = begin
+      version_string = %x{sw_vers -productVersion}.strip
+      version_string.match(MAC_OS_X_VERSION_REGEXP)[:minor_version].to_i
+    end
+
     POWDER_CONFIG = ".powder"
     POW_ENV = ".powenv"
     POW_PATH = "#{ENV['HOME']}/.pow"
@@ -65,16 +71,12 @@ module Powder
 
     desc "up", "Enable pow"
     def up
-      if File.exists? POW_FIREWALL_PLIST_PATH
-        %x{sudo launchctl load #{POW_FIREWALL_PLIST_PATH}}
+      if MAC_OS_X_MINOR_VERSION >= 10
+        start_on_yosemite
       else
-        say "Pow firewall configuration missing."
+        start_on_mavericks
       end
-      if File.exists? POW_DAEMON_PLIST_PATH
-        %x{launchctl load #{POW_DAEMON_PLIST_PATH}}
-      else
-        say "Pow daemon configuration missing."
-      end
+      say "Pow has been started."
     end
 
     desc "start", "An alias to up"
@@ -84,23 +86,21 @@ module Powder
     def down
       if File.exists? POW_FIREWALL_PLIST_PATH
         if not %x{sudo launchctl list | grep cx.pow.firewall}.empty?
-          %x{sudo launchctl unload #{POW_FIREWALL_PLIST_PATH}}
-        end
-        if ports = File.open(POW_FIREWALL_PLIST_PATH).read.match(/fwd .*?,([\d]+).*?dst-port ([\d]+)/)
-          http_port, dst_port = ports[1..2]
+          %x{sudo launchctl unload #{POW_FIREWALL_PLIST_PATH} 2>/dev/null}
         end
       end
 
       if File.exists? POW_DAEMON_PLIST_PATH
-        %x{launchctl unload #{POW_DAEMON_PLIST_PATH}}
+        %x{launchctl unload #{POW_DAEMON_PLIST_PATH} 2>/dev/null}
       end
 
-      http_port ||= 20559
-      dst_port ||= 80
-
-      if rule = %x{sudo ipfw show | grep ",#{http_port} .* dst-port #{dst_port} in"}.split.first
-        %x{sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0}
+      if MAC_OS_X_MINOR_VERSION >= 10
+        stop_on_yosemite
+      else
+        stop_on_mavericks
       end
+
+      say "Pow has been stopped."
     end
 
     desc "stop", "An alias to down"
@@ -316,7 +316,7 @@ module Powder
     desc "config", "Shows current pow configuration"
     def config
       http_port = ":" + configured_pow_http_port.to_s
-      results = %x{curl --silent -H host:pow localhost#{http_port}/config.json}.gsub(':','=>')
+      results = %x{curl --silent -H host:pow 127.0.0.1#{http_port}/config.json}.gsub(':','=>')
       return say("Error: Cannot get Pow config. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each do |k,v|
@@ -332,7 +332,7 @@ module Powder
     desc "status", "Shows current pow status"
     def status
       http_port = ":" + configured_pow_http_port.to_s
-      results = %x{curl --silent -H host:pow localhost#{http_port}/status.json}.gsub(':','=>')
+      results = %x{curl --silent -H host:pow 127.0.0.1#{http_port}/status.json}.gsub(':','=>')
       return say("Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
@@ -522,6 +522,43 @@ module Powder
       request = Net::HTTP::Get.new(uri.request_uri)
       http.request(request).body
     end
+
+    def start_on_yosemite
+      return say "Pow daemon configuration missing." unless File.exists?(POW_DAEMON_PLIST_PATH)
+      %x{launchctl bootstrap gui/"$UID" #{POW_DAEMON_PLIST_PATH} 2>/dev/null}
+
+      %x{launchctl enable gui/"$UID"/cx.pow.powd 2>/dev/null}
+      %x{launchctl kickstart -k gui/"$UID"/cx.pow.powd 2>/dev/null}
+    end
+
+    def stop_on_yosemite
+      %{sudo pfctl -a "com.apple/250.PowFirewall" -F all 2>/dev/null}
+    end
+
+    def start_on_mavericks
+      return say "Pow firewall configuration missing." unless File.exists?(POW_FIREWALL_PLIST_PATH)
+      %x{launchctl load #{POW_FIREWALL_PLIST_PATH} 2>/dev/null}
+
+      return say "Pow daemon configuration missing." unless File.exists?(POW_DAEMON_PLIST_PATH)
+      %x{launchctl load #{POW_DAEMON_PLIST_PATH} 2>/dev/null}
+    end
+
+    def stop_on_mavericks
+      if File.exists? POW_FIREWALL_PLIST_PATH
+        if ports = File.open(POW_FIREWALL_PLIST_PATH).read.match(/fwd .*?,([\d]+).*?dst-port ([\d]+)/)
+          http_port, dst_port = ports[1..2]
+        end
+      end
+
+      http_port ||= 20559
+      dst_port ||= 80
+
+      if rule = %x{sudo ipfw show | grep ",#{http_port} .* dst-port #{dst_port} in"}.split.first
+        %x{sudo ipfw delete #{rule} && sudo sysctl -w net.inet.ip.forwarding=0}
+      end
+    end
+
   end
 end
+
 Powder::CLI.start
