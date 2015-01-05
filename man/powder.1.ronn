@@ -32,7 +32,7 @@ powder will attempt to read .powder, which names a default symlink for the curre
   => Link the current dir to ~/.pow/bacon  
   => Create .powder, contents bacon
 
-  `$ powder link [bacon] --no-create`  
+  `$ powder link [bacon] --no-config`
   => Link the current dir to ~/.pow/bacon
 
   `$ powder link [bacon] --force`  

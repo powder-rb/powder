@@ -22,7 +22,7 @@ powder manages [pow](http://pow.cx/)
     => Link the current dir to ~/.pow/bacon
     => Create .powder, contents bacon
 
-    $ powder link [bacon] --no-create
+    $ powder link [bacon] --no-config
     => Link the current dir to ~/.pow/bacon
 
     $ powder link [bacon] --force
