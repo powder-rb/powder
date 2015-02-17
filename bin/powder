@@ -120,7 +120,7 @@ module Powder
         symlink_path = "#{POW_PATH}/#{name}"
         FileUtils.rm_f(symlink_path) if options[:force]
         unless File.exists?(symlink_path)
-          unless is_powable?
+          unless is_powable?(false)
             FileUtils.mkdir_p(symlink_path)
             symlink_path = "#{symlink_path}/public"
           end
@@ -459,7 +459,7 @@ module Powder
       end
     end
 
-    def is_powable?
+    def is_powable?(verbose=true)
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
       elsif legacy = (is_rails2_app? || is_radiant_app?)
@@ -472,8 +472,10 @@ module Powder
           return false
         end
       else
-        say "This does not appear to be a rack app as there is no config.ru."
-        say "Pow can also host static apps if there is an index.html in public/"
+        if verbose
+          say "This does not appear to be a rack app as there is no config.ru."
+          say "Pow can also host static apps if there is an index.html in public/"
+        end
         return false
       end
     end
