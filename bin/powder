@@ -210,7 +210,7 @@ module Powder
     desc "unlink", "Unlink a pow app"
     method_option :delete, :type => :boolean, :default => false, :alias => '-e', :desc => "delete .powder"
     def unlink(name=nil)
-      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
+      FileUtils.rm_rf POW_PATH + '/' + (name || get_pow_name)
       say "Successfully removed #{(name || get_pow_name)}"
       if options[:delete]
         FileUtils.rm_f POWDER_CONFIG
