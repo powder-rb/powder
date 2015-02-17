@@ -110,7 +110,6 @@ module Powder
     method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
     method_option :"no-config", :type => :boolean, :default => false, :alias => '-n', :desc => "do not write a .powder file"
     def link(name=nil)
-      return unless is_powable?
       if File.symlink?(POW_PATH)
         current_path = %x{pwd}.chomp
         if name
@@ -120,7 +119,13 @@ module Powder
         end
         symlink_path = "#{POW_PATH}/#{name}"
         FileUtils.rm_f(symlink_path) if options[:force]
-        FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+        unless File.exists?(symlink_path)
+          unless is_powable?
+            FileUtils.mkdir_p(symlink_path)
+            symlink_path = "#{symlink_path}/public"
+          end
+          FileUtils.ln_s(current_path, symlink_path)
+        end
         say "Your application is now available at http://#{name}.#{domain}/"
       else
         say "Pow is not installed. That is, the ${HOME}/.pow symlink does not exist."
