@@ -183,6 +183,7 @@ module Powder
     desc "open", "Open a pow in the browser"
     method_option :browser, :type => :string, :default => false, :aliases => '-b', :desc => 'browser to open with'
     method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
+    method_option :external, :type => :boolean, :default => false, :aliases => '-e', :desc => "open the first external domain"
     def open(name=nil)
       browser = options.browser? ? "-a \'#{options.browser}\'" : nil
       if options.xip?
@@ -197,6 +198,8 @@ module Powder
           Socket.do_not_reverse_lookup = orig
         end
         %x{open #{browser} http://#{name || get_pow_name}.#{local_ip}.xip.io}
+      elsif options.external?
+        %x{open #{browser} http://#{name || get_pow_name}.#{external_domain}}
       else
         %x{open #{browser} http://#{name || get_pow_name}.#{domain}}
       end
@@ -493,6 +496,17 @@ module Powder
       else
         'dev'
       end
+    end
+
+    def external_domain
+      if File.exists? File.expand_path('~/.powconfig')
+        returned_domain = %x{source ~/.powconfig; echo $POW_EXT_DOMAINS}.gsub("\n", "").split(",").first
+        returned_domain = %x{source ~/.powconfig; echo $POW_EXT_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
+        returned_domain = '127.0.0.1.xip.io' if returned_domain.nil? || returned_domain.empty?
+        returned_domain
+      else
+        '127.0.0.1.xip.io'
+      end      
     end
 
     def check_rdebug_initializer
