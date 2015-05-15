@@ -93,6 +93,10 @@ a basic **config.ru** for Rails 2
   `$ powder open -b 'Google Chrome'`
   => Opens the pow link with browsers with more than one word
 
+  `$ powder open --external` 
+  => Opens the pow link with the first ext_domain configured in .powconfig 
+  # Also aliased as -e
+
   # Should also works with all the other 'open' options:
   `$ powder open bacon -b Safari`
   `$ powder open --xip -b Firefox`
