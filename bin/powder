@@ -34,6 +34,10 @@ module Powder
     POW_DAEMON_PLIST_PATH="#{ENV['HOME']}/Library/LaunchAgents/cx.pow.powd.plist"
     POW_FIREWALL_PLIST_PATH = "/Library/LaunchDaemons/cx.pow.firewall.plist"
 
+    def self.exit_on_failure?
+      true
+    end
+
     desc "env", "Pass an arbitrary environment variable to pow"
     def env(key = nil, value = nil)
       if key.nil?
@@ -333,7 +337,7 @@ module Powder
     def status
       http_port = ":" + configured_pow_http_port.to_s
       results = %x{curl --silent -H host:pow 127.0.0.1#{http_port}/status.json}.gsub(':','=>')
-      return say("Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
+      raise(Thor::Error, "Error: Cannot get Pow status. Pow may be down. Try 'powder up' first.") if results.empty? || !(results =~ /^\{/)
       json = eval results
       json.each {|k,v| say "#{k.ljust(12, ' ')} #{v}"}
     end
