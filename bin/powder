@@ -180,6 +180,17 @@ module Powder
       print_table(pows)
     end
 
+    desc "index", "Create index page of Powable apps"
+    def index
+      list = "<ul>"
+      Dir[POW_PATH + "/*"].map { |a| 
+        list << "<li><a href=http://#{File.basename(a)}.dev>#{File.basename(a)}</a></li>" unless File.basename(a) == 'powder_index'
+      }
+      list << "</ul>"
+      FileUtils.mkdir_p("#{POW_PATH}/powder_index/public")
+      create_file "#{POW_PATH}/powder_index/public/index.html", list
+    end
+
     desc "open", "Open a pow in the browser"
     method_option :browser, :type => :string, :default => false, :aliases => '-b', :desc => 'browser to open with'
     method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"

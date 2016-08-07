@@ -59,6 +59,10 @@ powder manages [pow](http://pow.cx/)
     => List all the current apps linked in ~/.pow
     # aliased as powder -l
 
+    $ powder index
+    => Create index.html to all apps in ~/.pow
+    # ~/.pow/powder_index/public/index.html
+
     $ powder log
     => Tails the pow log.
     # Not the application log, but the pow log, available at
