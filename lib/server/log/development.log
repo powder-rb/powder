@@ -1,0 +1,122 @@
+# Logfile created on 2011-11-22 00:57:29 -0800 by logger.rb/25413
+D, [2011-11-22T00:57:29.086008 #3327] DEBUG -- : #<Rack::Request:0x007fe6731cded0 @env={"rack.version"=>[1, 1], "rack.input"=>#<StringIO:0x007fe6731cf488>, "rack.errors"=>#<IO:<STDERR>>, "rack.multithread"=>false, "rack.multiprocess"=>true, "rack.run_once"=>true, "rack.url_scheme"=>"http", "REQUEST_METHOD"=>"GET", "PATH_INFO"=>"/", "QUERY_STRING"=>"app=app-runway&back=http://app-runway.dev", "SCRIPT_NAME"=>"", "REMOTE_ADDR"=>"127.0.0.1", "SERVER_ADDR"=>"0.0.0.0", "SERVER_NAME"=>"powder-restart.dev", "SERVER_PORT"=>"80", "HTTP_HOST"=>"powder-restart.dev", "HTTP_CONNECTION"=>"keep-alive", "HTTP_CACHE_CONTROL"=>"max-age=0", "HTTP_USER_AGENT"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2", "HTTP_ACCEPT"=>"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "HTTP_ACCEPT_ENCODING"=>"gzip,deflate,sdch", "HTTP_ACCEPT_LANGUAGE"=>"en-US,en;q=0.8", "HTTP_ACCEPT_CHARSET"=>"ISO-8859-1,utf-8;q=0.7,*;q=0.3", "REMOTE_PORT"=>"51266"}>
+D, [2011-11-22T01:14:19.496582 #3513] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:20.560380 #3516] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:21.597078 #3519] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:22.632301 #3522] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:23.670155 #3525] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:24.704649 #3528] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:25.746037 #3531] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:26.781608 #3534] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:27.814918 #3537] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:28.852627 #3540] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:29.915145 #3543] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:31.112971 #3553] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:32.140345 #3556] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:33.195678 #3559] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:34.214741 #3562] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:35.236173 #3565] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:36.256850 #3568] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:37.286356 #3571] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:38.303952 #3574] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:39.313882 #3577] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:14:40.338228 #3580] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:21.705274 #3583] DEBUG -- : app-runway
+D, [2011-11-22T01:15:21.705815 #3583] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:22.736659 #3586] DEBUG -- : app-runway
+D, [2011-11-22T01:15:22.737249 #3586] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:23.770789 #3589] DEBUG -- : app-runway
+D, [2011-11-22T01:15:23.771350 #3589] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:24.847872 #3593] DEBUG -- : app-runway
+D, [2011-11-22T01:15:24.848546 #3593] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:25.879624 #3597] DEBUG -- : app-runway
+D, [2011-11-22T01:15:25.880248 #3597] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:26.918578 #3600] DEBUG -- : app-runway
+D, [2011-11-22T01:15:26.919190 #3600] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:28.037062 #3603] DEBUG -- : app-runway
+D, [2011-11-22T01:15:28.037571 #3603] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:29.070861 #3606] DEBUG -- : app-runway
+D, [2011-11-22T01:15:29.071442 #3606] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:30.089890 #3609] DEBUG -- : app-runway
+D, [2011-11-22T01:15:30.090396 #3609] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:31.107208 #3612] DEBUG -- : app-runway
+D, [2011-11-22T01:15:31.107758 #3612] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:32.128765 #3615] DEBUG -- : app-runway
+D, [2011-11-22T01:15:32.129376 #3615] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:33.148956 #3618] DEBUG -- : app-runway
+D, [2011-11-22T01:15:33.149540 #3618] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:34.171590 #3621] DEBUG -- : app-runway
+D, [2011-11-22T01:15:34.172163 #3621] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:35.196139 #3624] DEBUG -- : app-runway
+D, [2011-11-22T01:15:35.196651 #3624] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:36.214651 #3627] DEBUG -- : app-runway
+D, [2011-11-22T01:15:36.215361 #3627] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:37.253364 #3630] DEBUG -- : app-runway
+D, [2011-11-22T01:15:37.253937 #3630] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:38.284691 #3633] DEBUG -- : app-runway
+D, [2011-11-22T01:15:38.285187 #3633] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:39.319864 #3636] DEBUG -- : app-runway
+D, [2011-11-22T01:15:39.320429 #3636] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:40.367588 #3639] DEBUG -- : app-runway
+D, [2011-11-22T01:15:40.368147 #3639] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:41.440991 #3642] DEBUG -- : app-runway
+D, [2011-11-22T01:15:41.441507 #3642] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:15:42.490325 #3645] DEBUG -- : app-runway
+D, [2011-11-22T01:15:42.490915 #3645] DEBUG -- : http://powder-restart.dev/restart/app-runway
+D, [2011-11-22T01:16:05.920855 #3648] DEBUG -- : app-runway
+D, [2011-11-22T01:16:49.287841 #3653] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:17:30.212475 #3668] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:23:52.995929 #3738] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:26:06.670714 #3763] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:35:54.946485 #3808] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:40:04.079188 #3827] DEBUG -- : 0
+D, [2011-11-22T01:40:29.268529 #3831] DEBUG -- : 0
+D, [2011-11-22T01:40:29.268676 #3831] DEBUG -- : 
+D, [2011-11-22T01:40:36.467587 #3835] DEBUG -- : 0
+D, [2011-11-22T01:40:36.467732 #3835] DEBUG -- : 
+D, [2011-11-22T01:40:56.518540 #3838] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:46:24.122945 #3876] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:46:27.805353 #3880] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T01:47:16.457785 #3900] DEBUG -- : http://app-runway.dev
+D, [2011-11-22T11:18:35.854176 #3172] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:35.893854 #3173] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:36.635489 #3174] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:48.740233 #3177] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:52.348179 #3178] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:53.025413 #3179] DEBUG -- : Powder::Server
+D, [2011-11-22T11:18:53.697247 #3180] DEBUG -- : Powder::Server
+D, [2011-11-22T11:19:09.418178 #3181] DEBUG -- : [:routes, :before_filters, :after_filters, :templates, :errors, :reset!, :extensions, :middleware, :set, :enable, :disable, :error, :not_found, :template, :layout, :inline_templates=, :mime_type, :before, :after, :condition, :get, :put, :post, :delete, :head, :helpers, :register, :development?, :production?, :test?, :configure, :use, :run!, :prototype, :new, :call, :caller_files, :caller_locations, :environment, :environment?, :environment=, :raise_errors, :raise_errors?, :raise_errors=, :dump_errors, :dump_errors?, :dump_errors=, :show_exceptions, :show_exceptions?, :show_exceptions=, :sessions, :sessions?, :sessions=, :logging, :logging?, :logging=, :method_override, :method_override?, :method_override=, :methodoverride?, :methodoverride=, :run, :run?, :run=, :running, :running?, :running=, :server, :server?, :server=, :bind, :bind?, :bind=, :port, :port?, :port=, :app_file, :app_file?, :app_file=, :root, :root?, :root=, :views, :views?, :views=, :reload_templates, :reload_templates?, :reload_templates=, :lock, :lock?, :lock=, :public, :public?, :public=, :static, :static?, :static=, :allocate, :superclass, :json_creatable?, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :const_missing, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :to_json, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :__id__, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__]
+D, [2011-11-22T11:19:10.184999 #3182] DEBUG -- : [:routes, :before_filters, :after_filters, :templates, :errors, :reset!, :extensions, :middleware, :set, :enable, :disable, :error, :not_found, :template, :layout, :inline_templates=, :mime_type, :before, :after, :condition, :get, :put, :post, :delete, :head, :helpers, :register, :development?, :production?, :test?, :configure, :use, :run!, :prototype, :new, :call, :caller_files, :caller_locations, :environment, :environment?, :environment=, :raise_errors, :raise_errors?, :raise_errors=, :dump_errors, :dump_errors?, :dump_errors=, :show_exceptions, :show_exceptions?, :show_exceptions=, :sessions, :sessions?, :sessions=, :logging, :logging?, :logging=, :method_override, :method_override?, :method_override=, :methodoverride?, :methodoverride=, :run, :run?, :run=, :running, :running?, :running=, :server, :server?, :server=, :bind, :bind?, :bind=, :port, :port?, :port=, :app_file, :app_file?, :app_file=, :root, :root?, :root=, :views, :views?, :views=, :reload_templates, :reload_templates?, :reload_templates=, :lock, :lock?, :lock=, :public, :public?, :public=, :static, :static?, :static=, :allocate, :superclass, :json_creatable?, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :const_missing, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :to_json, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :__id__, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__]
+D, [2011-11-22T11:19:10.900793 #3183] DEBUG -- : [:routes, :before_filters, :after_filters, :templates, :errors, :reset!, :extensions, :middleware, :set, :enable, :disable, :error, :not_found, :template, :layout, :inline_templates=, :mime_type, :before, :after, :condition, :get, :put, :post, :delete, :head, :helpers, :register, :development?, :production?, :test?, :configure, :use, :run!, :prototype, :new, :call, :caller_files, :caller_locations, :environment, :environment?, :environment=, :raise_errors, :raise_errors?, :raise_errors=, :dump_errors, :dump_errors?, :dump_errors=, :show_exceptions, :show_exceptions?, :show_exceptions=, :sessions, :sessions?, :sessions=, :logging, :logging?, :logging=, :method_override, :method_override?, :method_override=, :methodoverride?, :methodoverride=, :run, :run?, :run=, :running, :running?, :running=, :server, :server?, :server=, :bind, :bind?, :bind=, :port, :port?, :port=, :app_file, :app_file?, :app_file=, :root, :root?, :root=, :views, :views?, :views=, :reload_templates, :reload_templates?, :reload_templates=, :lock, :lock?, :lock=, :public, :public?, :public=, :static, :static?, :static=, :allocate, :superclass, :json_creatable?, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :included_modules, :include?, :name, :ancestors, :instance_methods, :public_instance_methods, :protected_instance_methods, :private_instance_methods, :constants, :const_get, :const_set, :const_defined?, :const_missing, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :to_json, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :initialize_dup, :initialize_clone, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :inspect, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :respond_to_missing?, :extend, :display, :method, :public_method, :define_singleton_method, :__id__, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__]
+D, [2011-11-22T11:25:25.763963 #3244] DEBUG -- : nil
+D, [2011-11-22T11:25:26.441588 #3245] DEBUG -- : nil
+D, [2011-11-22T11:25:27.122133 #3246] DEBUG -- : nil
+D, [2011-11-22T11:25:32.432006 #3247] DEBUG -- : nil
+D, [2011-11-22T11:25:33.119303 #3248] DEBUG -- : nil
+D, [2011-11-22T11:25:33.769197 #3249] DEBUG -- : nil
+D, [2011-11-22T11:25:49.749092 #3250] DEBUG -- : /Users/phil/Development/powder/lib/server
+D, [2011-11-22T11:25:50.469292 #3251] DEBUG -- : /Users/phil/Development/powder/lib/server
+D, [2011-11-22T11:25:51.105597 #3252] DEBUG -- : /Users/phil/Development/powder/lib/server
+D, [2011-11-22T11:26:33.413746 #3261] DEBUG -- : nil
+D, [2011-11-22T11:26:34.152169 #3262] DEBUG -- : nil
+D, [2011-11-22T11:26:34.912740 #3263] DEBUG -- : nil
+D, [2011-11-22T11:26:52.758084 #3264] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:26:53.534891 #3265] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:26:54.366770 #3266] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:29:46.350499 #3271] DEBUG -- : nil
+D, [2011-11-22T11:29:46.350663 #3271] DEBUG -- : 
+D, [2011-11-22T11:30:13.248125 #3273] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:30:13.264979 #3273] DEBUG -- : nil
+D, [2011-11-22T11:30:13.265123 #3273] DEBUG -- : 
+D, [2011-11-22T11:30:14.015025 #3275] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:30:27.802063 #3276] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:30:27.802263 #3276] DEBUG -- : nil
+D, [2011-11-22T11:30:27.802310 #3276] DEBUG -- : 
+D, [2011-11-22T11:30:32.484158 #3278] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:30:32.484349 #3278] DEBUG -- : nil
+D, [2011-11-22T11:30:32.484396 #3278] DEBUG -- : 
+D, [2011-11-22T11:34:49.285625 #3294] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:34:49.285840 #3294] DEBUG -- : app-runway
+D, [2011-11-22T11:34:49.285909 #3294] DEBUG -- : 
+D, [2011-11-22T11:35:49.805334 #3300] DEBUG -- : ["app-runway"]
+D, [2011-11-22T11:35:50.491216 #3300] DEBUG -- : http://app-runway.dev
