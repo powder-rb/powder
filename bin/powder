@@ -122,6 +122,7 @@ module Powder
         FileUtils.rm_f(symlink_path) if options[:force]
         FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
         say "Your application is now available at http://#{name}.#{domain}/"
+        `echo -n 'http://#{name}.#{domain}/' | pbcopy`
       else
         say "Pow is not installed. That is, the ${HOME}/.pow symlink does not exist."
       end
