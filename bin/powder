@@ -181,7 +181,7 @@ module Powder
     end
 
     desc "open", "Open a pow in the browser"
-    method_option :browser, :type => :string, :default => false, :aliases => '-b', :desc => 'browser to open with'
+    method_option :browser, :type => :string, :default => nil, :aliases => '-b', :desc => 'browser to open with'
     method_option :xip, :type => :boolean, :default => false, :aliases => '-x', :desc => "open xip.io instead of .domain"
     method_option :path, :type => :string, :default => '', :aliases => '-p', :desc => 'path to open'
     def open(name=nil)
