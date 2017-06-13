@@ -1,8 +1,13 @@
-### Ongoing
+### 0.3.2 / 2017-06-14 ###
 
-* 1 minor change
+* 4 minor changes
 
   * Fixes shortcut aliases
+  ([commit 1](https://github.com/powder-rb/powder/commit/7bcf04319b913c842d5c027d4c538e495c997e71) [commit 2](https://github.com/powder-rb/powder/commit/5df9781cbd848287412be3f9c50bcf7f67781795))
+  * Updates Gemfile to use https
+  * Uses better shebang to get currently active ruby
+  * Corrects homepage link in gemspec
+  ([all in this commit](https://github.com/powder-rb/powder/commit/82fbf49d219a8b02ce5c5041a2b0f7af1521c84a))
 
 ### 0.3.1 / 2017-06-13 ###
 
