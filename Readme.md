@@ -66,7 +66,7 @@ powder manages [pow](http://pow.cx/)
 
     $ powder debug
     => Opens a debug shell with your application environment
-    
+
     $ powder open
     => Opens the pow link in a browser
     # aliased as powder -o
@@ -127,7 +127,7 @@ powder manages [pow](http://pow.cx/)
     # aliased as powder [prod|dev]
     # This is a wrapper for powder env RAILS_ENV ...
 
-    
+
 ### Install and uninstall Pow ###
 
     $ powder install
@@ -147,7 +147,7 @@ powder manages [pow](http://pow.cx/)
     $ powder up
     => Enable Pow
 	# aliased as powder start
-	
+
     $ powder down
     => Disable Pow
 	# aliased as powder stop
