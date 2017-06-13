@@ -466,30 +466,11 @@ module Powder
     def is_powable?
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
-      elsif legacy = (is_rails2_app? || is_radiant_app?)
-        say "This appears to be a #{legacy} application. You need a config.ru file."
-        if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
-          create_file "config.ru",  get_gist("https://gist.github.com/sstephenson/909308/raw")
-          return true
-        else
-          say "Did not create config.ru"
-          return false
-        end
       else
         say "This does not appear to be a rack app as there is no config.ru."
         say "Pow can also host static apps if there is an index.html in public/"
         return false
       end
-    end
-
-    def is_rails2_app?
-      File.exists?('config/environment.rb') &&
-        !`grep RAILS_GEM_VERSION config/environment.rb`.empty? ? 'Rails 2' : nil
-    end
-
-    def is_radiant_app?
-      File.exists?('config/environment.rb') &&
-        !`grep Radiant::Initializer config/environment.rb`.empty? ? 'Radiant' : nil
     end
 
     def domain
