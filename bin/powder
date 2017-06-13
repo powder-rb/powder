@@ -205,7 +205,7 @@ module Powder
     end
 
     desc "unlink", "Unlink a pow app"
-    method_option :delete, :type => :boolean, :default => false, :alias => '-e', :desc => "delete .powder"
+    method_option :delete, :type => :boolean, :default => false, :aliases => '-e', :desc => "delete .powder"
     def unlink(name=nil)
       return unless is_powable?
       FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
@@ -350,7 +350,7 @@ module Powder
 
     desc "portmap PORT", "Map a port to an app"
     method_option :name, :type => :string, :aliases => '-n', :desc => 'name of the port map'
-    method_option :force, :type => :boolean, :default => false, :alias => '-f', :desc => "remove the old configuration, overwrite .powder"
+    method_option :force, :type => :boolean, :default => false, :aliases => '-f', :desc => "remove the old configuration, overwrite .powder"
     def portmap(port)
       if File.symlink?(POW_PATH)
         name = options.name ? options.name : get_pow_name

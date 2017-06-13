@@ -1,3 +1,9 @@
+### Ongoing
+
+* 1 minor change
+
+  * Fixes shortcut aliases
+
 ### 0.3.1 / 2017-06-13 ###
 
 * 1 minor change
