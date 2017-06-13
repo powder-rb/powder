@@ -215,8 +215,14 @@ module Powder
     method_option :delete, :type => :boolean, :default => false, :alias => '-e', :desc => "delete .powder"
     def unlink(name=nil)
       return unless is_powable?
-      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
-      say "Successfully removed #{(name || get_pow_name)}"
+      name ||= get_pow_name
+      symlink_path = "#{POW_PATH}/#{name}"
+      FileUtils.rm_rf(symlink_path)
+      if File.exists?(symlink_path)
+        say "There was a problem removing #{symlink_path}"
+        return
+      end
+      say "Successfully removed #{name}"
       if options[:delete]
         FileUtils.rm_f POWDER_CONFIG
         say "Successfully removed #{POWDER_CONFIG}"
@@ -486,7 +492,7 @@ module Powder
         end
       else
         say "This does not appear to be a rack app as there is no config.ru."
-        say "Pow can also host static apps if there is an index.html in public/"
+        say "Pow can also host static apps if there is an index.html file in ./ or public/"
         return false
       end
     end
