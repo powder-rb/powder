@@ -119,8 +119,17 @@ module Powder
           name = get_pow_name
         end
         symlink_path = "#{POW_PATH}/#{name}"
-        FileUtils.rm_f(symlink_path) if options[:force]
-        FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+        FileUtils.rm_rf(symlink_path) if options[:force]
+        if File.exists?(symlink_path)
+          say "#{symlink_path} already exists!"
+          return
+        end
+        if File.exists?('index.html')
+          FileUtils.mkdir_p(symlink_path)
+          FileUtils.ln_s(current_path, "#{symlink_path}/public")
+        else
+          FileUtils.ln_s(current_path, symlink_path)
+        end
         say "Your application is now available at http://#{name}.#{domain}/"
       else
         say "Pow is not installed. That is, the ${HOME}/.pow symlink does not exist."
@@ -464,7 +473,7 @@ module Powder
     end
 
     def is_powable?
-      if File.exists?('config.ru') || File.exists?('public/index.html')
+      if File.exists?('config.ru') || File.exists?('public/index.html') || File.exists?('index.html')
         true
       elsif legacy = (is_rails2_app? || is_radiant_app?)
         say "This appears to be a #{legacy} application. You need a config.ru file."
