@@ -184,7 +184,7 @@ module Powder
     method_option :browser, :type => :string, :default => nil, :aliases => '-b', :desc => 'browser to open with'
     method_option :xip, :type => :boolean, :default => false, :alias => '-x', :desc => "open xip.io instead of .domain"
     def open(name=nil)
-      browser = options.browser? ? "-a \'#{options.browser}\'" : nil
+      browser = options.browser ? "-a \'#{options.browser}\'" : nil
       if options.xip?
         local_ip = '0.0.0.0'
         begin
