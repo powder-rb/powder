@@ -269,7 +269,6 @@ module Powder
 
     desc "debug", "Open a debug session"
     def debug
-      check_rdebug_initializer
       # Connect to remote rdebug session
       require 'ruby-debug'
       Debugger.settings[:autoeval] = true
@@ -482,34 +481,6 @@ module Powder
       else
         'dev'
       end
-    end
-
-    def check_rdebug_initializer
-      rails_initializer =  %x{pwd}.chomp + "/config/initializers/rdebug.rb"
-      rack_initializer =  %x{pwd}.chomp + "/rdebug.rb"
-      unless File.exists?(rack_initializer) || File.exists?(rails_initializer)
-        say "Its appears that the required initializer for rdebug doesn't exists in your application."
-        if yes? "Do you want to create it(y/n)?"
-          if yes? "This is a Rails/Radiant app(y/n)?"
-            create_file rails_initializer, get_gist("https://gist.github.com/csiszarattila/1135055/raw")
-          else
-            create_file rack_initializer, get_gist("https://gist.github.com/csiszarattila/1262647/raw")
-            append_to_file 'config.ru', "\nrequire 'rdebug.rb'"
-          end
-          restart
-        else
-          return false
-        end
-      end
-    end
-
-    def get_gist(url)
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      request = Net::HTTP::Get.new(uri.request_uri)
-      http.request(request).body
     end
 
     def start_on_yosemite
