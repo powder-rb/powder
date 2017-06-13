@@ -1,3 +1,11 @@
+### 0.3.1 / 2017-06-13 ###
+
+* 1 minor change
+
+  * Fixes the message `Expected string default value for '--browser'` that was
+    output when using `powder open`
+    ([commit](https://github.com/powder-rb/powder/commit/b8bf956f64c2451d8abafc7480f17a15050aa6d3))
+
 ### 0.3.0 / 2014-10-29 ###
 
 * 1 minor change
