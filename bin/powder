@@ -110,7 +110,6 @@ module Powder
     method_option :force, :type => :boolean, :default => false, :aliases => '-f', :desc => "remove the old configuration, overwrite .powder"
     method_option :"no-config", :type => :boolean, :default => false, :aliases => '-n', :desc => "do not write a .powder file"
     def link(name=nil)
-      return unless is_powable?
       if File.symlink?(POW_PATH)
         current_path = %x{pwd}.chomp
         if name
@@ -120,7 +119,13 @@ module Powder
         end
         symlink_path = "#{POW_PATH}/#{name}"
         FileUtils.rm_f(symlink_path) if options[:force]
-        FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+        unless File.exists?(symlink_path)
+          unless is_powable?(false)
+            FileUtils.mkdir_p(symlink_path)
+            symlink_path = "#{symlink_path}/public"
+          end
+          FileUtils.ln_s(current_path, symlink_path)
+        end
         say "Your application is now available at http://#{name}.#{domain}/"
       else
         say "Pow is not installed. That is, the ${HOME}/.pow symlink does not exist."
@@ -205,8 +210,7 @@ module Powder
     desc "unlink", "Unlink a pow app"
     method_option :delete, :type => :boolean, :default => false, :aliases => '-e', :desc => "delete .powder"
     def unlink(name=nil)
-      return unless is_powable?
-      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
+      FileUtils.rm_rf POW_PATH + '/' + (name || get_pow_name)
       say "Successfully removed #{(name || get_pow_name)}"
       if options[:delete]
         FileUtils.rm_f POWDER_CONFIG
@@ -463,7 +467,7 @@ module Powder
       end
     end
 
-    def is_powable?
+    def is_powable?(verbose=true)
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
       elsif legacy = (is_rails2_app? || is_radiant_app?)
@@ -476,8 +480,10 @@ module Powder
           return false
         end
       else
-        say "This does not appear to be a rack app as there is no config.ru."
-        say "Pow can also host static apps if there is an index.html in public/"
+        if verbose
+          say "This does not appear to be a rack app as there is no config.ru."
+          say "Pow can also host static apps if there is an index.html in public/"
+        end
         return false
       end
     end
