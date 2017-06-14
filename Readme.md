@@ -92,6 +92,9 @@ powder manages [pow](http://pow.cx/)
     $ powder open --xip -b Firefox
     $ powder -o -x -b 'Google Chrome'
 
+    $ powder open [--path|-p] home
+    => Opens the pow link with a path appended, e.g. http://bacon.dev/home
+
     $ powder restart
     => Restart the current app
     # aliased as powder -r
