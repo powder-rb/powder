@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/powder-rb/powder"
   s.summary     = %q{Makes Pow even easier}
   s.description = %q{Makes Pow even easier. I mean really, really, ridiculously easy.}
+  s.license     = 'MIT'
 
   s.rubyforge_project = "powder"
 
