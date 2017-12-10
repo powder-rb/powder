@@ -1,3 +1,16 @@
+### 0.4.0 / 2017-12-10 ###
+
+* 1 minor change
+
+  * Updates powder to open domains as `.test` instead of `.dev` [commit](https://github.com/powder-rb/powder/commit/6fd673d429a407f67a91738316a641135bbd974b) [discussion](https://github.com/powder-rb/powder/issues/134)
+
+### 0.3.3 / 2017-11-01 ###
+
+* 2 minor changes
+
+  * Allows opening with the `--path` argument [commit](https://github.com/powder-rb/powder/commit/925e312e30a2ef6a00b67012be028cd943ee11f2)
+  * Adds license info to the gemspec
+
 ### 0.3.2 / 2017-06-14 ###
 
 * 4 minor changes
