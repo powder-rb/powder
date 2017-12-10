@@ -82,7 +82,7 @@ a basic **config.ru** for Rails 2
   # aliased as powder -o
 
   `$ powder open [bacon]`  
-  => Opens http://bacon.dev in a browser  
+  => Opens http://bacon.test in a browser
   # if you have set up alternative top level domains in .powconfig,  
   # then the first listed domain will be opened.
 
@@ -94,7 +94,7 @@ a basic **config.ru** for Rails 2
   => Opens the pow link with browsers with more than one word
 
   `$ powder open --path home`
-  => Opens the pow link with a path appended (http://bacon.dev/home)
+  => Opens the pow link with a path appended (http://bacon.test/home)
   # Also aliased as -p
 
   # Should also works with all the other 'open' options:

@@ -76,7 +76,7 @@ powder manages [pow](http://pow.cx/)
     # aliased as powder -o -x
 
     $ powder open [bacon]
-    => Opens http://bacon.dev in a browser
+    => Opens http://bacon.test in a browser
     # if you have set up alternative top level domains in .powconfig,
     # then the first listed domain will be opened.
 
@@ -93,7 +93,7 @@ powder manages [pow](http://pow.cx/)
     $ powder -o -x -b 'Google Chrome'
 
     $ powder open [--path|-p] home
-    => Opens the pow link with a path appended, e.g. http://bacon.dev/home
+    => Opens the pow link with a path appended, e.g. http://bacon.test/home
 
     $ powder restart
     => Restart the current app
