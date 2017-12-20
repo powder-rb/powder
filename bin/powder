@@ -495,9 +495,9 @@ module Powder
     end
 
     def domain
-      if File.exists? File.expand_path('~/.powconfig')
-        returned_domain = %x{source ~/.powconfig; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
-        returned_domain = %x{source ~/.powconfig; echo $POW_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
+      if File.exists? File.expand_path(POW_CONFIG)
+        returned_domain = %x{source #{POW_CONFIG}; echo $POW_DOMAINS}.gsub("\n", "").split(",").first
+        returned_domain = %x{source #{POW_CONFIG}; echo $POW_DOMAIN}.gsub("\n", "") if returned_domain.nil? || returned_domain.empty?
         returned_domain = 'test' if returned_domain.nil? || returned_domain.empty?
         returned_domain
       else
