@@ -121,6 +121,8 @@ module Powder
         symlink_path = "#{POW_PATH}/#{name}"
         FileUtils.rm_f(symlink_path) if options[:force]
         FileUtils.ln_s(current_path, symlink_path) unless File.exists?(symlink_path)
+        powrc_path = "#{current_path}/.powrc"
+        FileUtils.ln_s("#{POW_PATH}/.powrc", powrc_path) unless File.exists?(powrc_path)
         say "Your application is now available at http://#{name}.#{domain}/"
       else
         say "Pow is not installed. That is, the ${HOME}/.pow symlink does not exist."
@@ -208,6 +210,8 @@ module Powder
     method_option :delete, :type => :boolean, :default => false, :aliases => '-e', :desc => "delete .powder"
     def unlink(name=nil)
       return unless is_powable?
+      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name) + '/.powrc'
+      FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
       FileUtils.rm_f POW_PATH + '/' + (name || get_pow_name)
       say "Successfully removed #{(name || get_pow_name)}"
       if options[:delete]
