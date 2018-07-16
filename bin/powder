@@ -271,7 +271,6 @@ module Powder
 
     desc "debug", "Open a debug session"
     def debug
-      check_rdebug_initializer
       # Connect to remote rdebug session
       require 'ruby-debug'
       Debugger.settings[:autoeval] = true
@@ -468,30 +467,11 @@ module Powder
     def is_powable?
       if File.exists?('config.ru') || File.exists?('public/index.html')
         true
-      elsif legacy = (is_rails2_app? || is_radiant_app?)
-        say "This appears to be a #{legacy} application. You need a config.ru file."
-        if yes? "Do you want to autogenerate a basic config.ru for #{legacy}?"
-          create_file "config.ru",  get_gist("https://gist.github.com/sstephenson/909308/raw")
-          return true
-        else
-          say "Did not create config.ru"
-          return false
-        end
       else
         say "This does not appear to be a rack app as there is no config.ru."
         say "Pow can also host static apps if there is an index.html in public/"
         return false
       end
-    end
-
-    def is_rails2_app?
-      File.exists?('config/environment.rb') &&
-        !`grep RAILS_GEM_VERSION config/environment.rb`.empty? ? 'Rails 2' : nil
-    end
-
-    def is_radiant_app?
-      File.exists?('config/environment.rb') &&
-        !`grep Radiant::Initializer config/environment.rb`.empty? ? 'Radiant' : nil
     end
 
     def domain
@@ -503,34 +483,6 @@ module Powder
       else
         'test'
       end
-    end
-
-    def check_rdebug_initializer
-      rails_initializer =  %x{pwd}.chomp + "/config/initializers/rdebug.rb"
-      rack_initializer =  %x{pwd}.chomp + "/rdebug.rb"
-      unless File.exists?(rack_initializer) || File.exists?(rails_initializer)
-        say "Its appears that the required initializer for rdebug doesn't exists in your application."
-        if yes? "Do you want to create it(y/n)?"
-          if yes? "This is a Rails/Radiant app(y/n)?"
-            create_file rails_initializer, get_gist("https://gist.github.com/csiszarattila/1135055/raw")
-          else
-            create_file rack_initializer, get_gist("https://gist.github.com/csiszarattila/1262647/raw")
-            append_to_file 'config.ru', "\nrequire 'rdebug.rb'"
-          end
-          restart
-        else
-          return false
-        end
-      end
-    end
-
-    def get_gist(url)
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      request = Net::HTTP::Get.new(uri.request_uri)
-      http.request(request).body
     end
 
     def start_on_yosemite
